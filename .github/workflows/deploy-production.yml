@@ -1,6 +1,10 @@
-# Deploys Vyzr to vyzr.eu on every push to main, via the reusable
-# Node.js/Passenger FTP workflow in AxaWeb-Deploy. See that repo's
-# README for how the deployment works end to end.
+# Deploys Vyzr to vyzr.eu on every push to main.
+#
+# Vyzr runs as a Node.js app via DirectAdmin's Node.js Selector
+# (Passenger). Since SSH is not available on this hosting account, this
+# builds with Next.js standalone output (self-contained node_modules, no
+# server-side npm install needed) and syncs it over FTPS. Passenger
+# restarts automatically when tmp/restart.txt changes.
 
 name: Deploy Production
 
@@ -9,14 +13,61 @@ on:
     branches: [main]
 
 jobs:
-  deploy-production:
-    uses: kdrrsec/AxaWeb-Deploy/.github/workflows/reusable-deploy-nodejs-ftp.yml@main
-    with:
-      environment: production
-      node-version: "20"
-      domain: vyzr.eu
-    secrets:
-      FTP_HOST: ${{ secrets.FTP_HOST }}
-      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-      FTP_PORT: ${{ secrets.FTP_PORT }}
+  deploy:
+    name: Deploy to vyzr.eu
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (standalone output)
+        run: npm run build
+
+      - name: Verify standalone build output exists
+        run: |
+          if [ ! -f ".next/standalone/server.js" ]; then
+            echo "::error::.next/standalone/server.js was not found. Check next.config.ts has output: 'standalone'."
+            exit 1
+          fi
+
+      - name: Assemble deployable bundle
+        run: |
+          mkdir -p .next/standalone/.next/static
+          cp -r .next/static/. .next/standalone/.next/static/
+          if [ -d public ]; then
+            mkdir -p .next/standalone/public
+            cp -r public/. .next/standalone/public/
+          fi
+          mkdir -p .next/standalone/tmp
+          echo "Deployed ${{ github.sha }} at $(date -u +%Y-%m-%dT%H:%M:%SZ)" > .next/standalone/tmp/restart.txt
+
+      - name: Sync build to hosting over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          protocol: ftps
+          local-dir: ./.next/standalone/
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/.cache/**
+
+      - name: Deployment summary
+        run: |
+          echo "### Deployed to vyzr.eu" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Commit: \`${{ github.sha }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Restart: triggered via tmp/restart.txt (Passenger)" >> "$GITHUB_STEP_SUMMARY"
