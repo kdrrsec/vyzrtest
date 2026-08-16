@@ -1,0 +1,22 @@
+# Deploys Vyzr to vyzr.eu on every push to main, via the reusable
+# Node.js/Passenger FTP workflow in AxaWeb-Deploy. See that repo's
+# README for how the deployment works end to end.
+
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-production:
+    uses: kdrrsec/AxaWeb-Deploy/.github/workflows/reusable-deploy-nodejs-ftp.yml@main
+    with:
+      environment: production
+      node-version: "20"
+      domain: vyzr.eu
+    secrets:
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTP_PORT: ${{ secrets.FTP_PORT }}

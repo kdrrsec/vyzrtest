@@ -59,6 +59,7 @@ const distDir = getDistDir();
 
 const nextConfig: NextConfig = {
   distDir,
+  output: "standalone",
   outputFileTracingRoot: path.join(__dirname),
   async redirects() {
     return [
