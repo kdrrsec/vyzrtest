@@ -25,8 +25,8 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
   const hint = mode === "own" ? t("visorSelectHintOwn") : t("visorSelectHint");
 
   return (
-    <div className="border-t border-white/20 pt-8">
-      <label htmlFor="visor-select" className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+    <div className="border-t border-black/10 pt-8">
+      <label htmlFor="visor-select" className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
         {label}
       </label>
       <p className="mt-2 text-xs leading-relaxed text-muted">{hint}</p>
@@ -37,23 +37,23 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
         required
         value={value ?? ""}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-4 w-full cursor-pointer appearance-none rounded-lg border border-white/25 bg-white/[0.03] px-4 py-3 text-sm text-white focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        className="mt-4 w-full cursor-pointer appearance-none rounded-lg border border-black/15 bg-black/[0.02] px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
       >
-        <option value="" disabled className="bg-[#111] text-muted">
+        <option value="" disabled className="bg-white text-muted">
           {t("visorSelectPlaceholder")}
         </option>
-        <optgroup label={t("visorSelectPopular")} className="bg-[#111]">
+        <optgroup label={t("visorSelectPopular")} className="bg-white">
           {popular.map((v) => (
-            <option key={v.id} value={v.id} className="bg-[#111]">
+            <option key={v.id} value={v.id} className="bg-white">
               {visorDisplayLabel(v)}
               {mode === "supply" ? ` — ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
             </option>
           ))}
         </optgroup>
         {groups.map(({ brand, items }) => (
-          <optgroup key={brand} label={brand} className="bg-[#111]">
+          <optgroup key={brand} label={brand} className="bg-white">
             {items.map((v) => (
-              <option key={v.id} value={v.id} className="bg-[#111]">
+              <option key={v.id} value={v.id} className="bg-white">
                 {visorDisplayLabel(v)}
                 {mode === "supply" ? ` — ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
               </option>
@@ -63,7 +63,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
       </select>
 
       {selected ? (
-        <p className="mt-3 text-sm text-white">
+        <p className="mt-3 text-sm text-foreground">
           <span className="text-muted">{t("visorSelectChosen")}: </span>
           {visorDisplayLabel(selected)}
           {mode === "supply" ? (
@@ -76,7 +76,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
 
       {disclaimer && selected ? (
         <p
-          className="mt-3 rounded-lg border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3 text-xs leading-relaxed text-amber-100/90"
+          className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800"
           role="note"
         >
           {disclaimer}

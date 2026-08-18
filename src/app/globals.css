@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #000000;
+  background-color: #fafafa;
 }
 
 body {
   @apply bg-background text-foreground antialiased;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #fafafa;
+  color: #0a0a0a;
 }
 
 ::selection {
@@ -24,9 +24,9 @@ body {
 .site-announce-bar {
   position: relative;
   z-index: 40;
-  border-bottom: 1px solid rgba(255, 45, 45, 0.25);
+  border-bottom: 1px solid rgba(224, 30, 30, 0.25);
   text-align: center;
-  background-color: color-mix(in srgb, rgb(255, 45, 45) 12%, rgb(0, 0, 0));
+  background-color: color-mix(in srgb, rgb(224, 30, 30) 10%, rgb(255, 255, 255));
 }
 
 .site-announce-text {
@@ -38,7 +38,7 @@ body {
   line-height: 1.25;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #0a0a0a;
 }
 
 .site-announce-text--slide {
@@ -85,11 +85,11 @@ body {
 }
 
 .site-nav-link.is-inactive {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(10, 10, 10, 0.65);
 }
 
 .site-nav-link.is-inactive:hover {
-  color: #ffffff;
+  color: #0a0a0a;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -105,16 +105,16 @@ body {
 @layer components {
   .btn-accent {
     @apply cursor-pointer rounded-full bg-accent text-white transition duration-200 ease-out;
-    @apply hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_0_28px_rgba(255,45,45,0.55)];
+    @apply hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_0_20px_rgba(224,30,30,0.35)];
     @apply active:scale-[0.98] active:brightness-95;
-    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
   }
 }
 
 input:-webkit-autofill,
 textarea:-webkit-autofill {
-  -webkit-text-fill-color: #ffffff;
-  caret-color: #ffffff;
+  -webkit-text-fill-color: #0a0a0a;
+  caret-color: #0a0a0a;
   transition: background-color 9999s ease-out 0s;
-  box-shadow: 0 0 0 1000px #000000 inset;
+  box-shadow: 0 0 0 1000px #ffffff inset;
 }

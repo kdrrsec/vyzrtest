@@ -86,12 +86,12 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 overflow-visible border-b border-white/20 bg-black/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 overflow-visible border-b border-black/10 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex h-[50px] max-h-[50px] min-h-[50px] max-w-7xl items-center justify-between gap-3 overflow-visible px-4 md:px-6">
           <div className="flex min-w-0 items-center gap-3 lg:gap-8">
             <button
               type="button"
-              className="rounded-lg p-2 text-white lg:hidden"
+              className="rounded-lg p-2 text-foreground lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={tNav("openMenu")}
@@ -131,7 +131,7 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setSearchOpen(true)}
-              className="rounded-full p-2.5 text-white transition hover:bg-white/5 hover:text-accent"
+              className="rounded-full p-2.5 text-foreground transition hover:bg-black/5 hover:text-accent"
               aria-label={tNav("search")}
             >
               <SearchIcon className="h-5 w-5" />
@@ -140,13 +140,13 @@ export function SiteHeader() {
             <button
               type="button"
               onClick={() => setCartDrawerOpen(true)}
-              className="flex items-center gap-1.5 rounded-full py-2.5 pl-2 pr-2.5 text-white transition hover:bg-white/5 hover:text-accent"
+              className="flex items-center gap-1.5 rounded-full py-2.5 pl-2 pr-2.5 text-foreground transition hover:bg-black/5 hover:text-accent"
               aria-label={`${tNav("cart")}, ${cartCount}`}
             >
               <BagIcon className="h-5 w-5 shrink-0" />
               <span
                 className={`font-mono text-[11px] font-semibold tabular-nums leading-none tracking-tight ${
-                  cartCount > 0 ? "text-white" : "text-white/45"
+                  cartCount > 0 ? "text-foreground" : "text-foreground/40"
                 }`}
               >
                 {cartCount > 99 ? "99+" : cartCount}
@@ -156,16 +156,16 @@ export function SiteHeader() {
         </div>
 
         {mobileOpen ? (
-          <div id="mobile-nav" className="border-t border-white/20 bg-black lg:hidden">
+          <div id="mobile-nav" className="border-t border-black/10 bg-white lg:hidden">
             <nav className="flex flex-col px-4 py-4" aria-label="Mobile primary">
               {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`border-b border-white/12 py-3 text-sm font-medium uppercase tracking-widest transition hover:text-accent ${
+                  className={`border-b border-black/10 py-3 text-sm font-medium uppercase tracking-widest transition hover:text-accent ${
                     isNavActive(pathname, item.href)
                       ? "text-accent"
-                      : "text-white"
+                      : "text-foreground"
                   }`}
                 >
                   {item.label}
@@ -192,17 +192,22 @@ function HeaderLogo({ src }: { src: string }) {
   const [broken, setBroken] = useState(false);
   if (broken) {
     return (
-      <span className="font-mono text-2xl font-semibold tracking-[0.22em] text-white md:text-3xl">
+      <span className="font-mono text-2xl font-semibold tracking-[0.22em] text-foreground md:text-3xl">
         VYZR
       </span>
     );
   }
   return (
     // eslint-disable-next-line @next/next/no-img-element -- /public asset; svg/png from designer
+    // NOTE: source asset is a white wordmark with transparent bg (designed for the old black
+    // theme). `brightness-0` recolors the opaque pixels to solid black so it reads on the new
+    // light background. This also flattens the small red accent tip to black.
+    // TODO: ask the designer for a proper dark-on-light (and ideally still red-accented) logo
+    // export; swap this filter out once that asset exists.
     <img
       src={src}
       alt="VYZR"
-      className="h-[128px] w-auto max-w-[min(100vw-5rem,720px)] shrink-0 object-contain object-left md:h-[140px]"
+      className="h-[128px] w-auto max-w-[min(100vw-5rem,720px)] shrink-0 object-contain object-left brightness-0 md:h-[140px]"
       onError={() => setBroken(true)}
     />
   );

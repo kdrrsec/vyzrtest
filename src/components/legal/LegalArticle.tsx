@@ -3,22 +3,22 @@ import { getLegalBlocks, type LegalBlock } from "@/lib/legal-document";
 function LegalBlock({ block: b }: { block: LegalBlock }) {
   switch (b.t) {
     case "hr":
-      return <hr className="my-10 border-white/15" />;
+      return <hr className="my-10 border-black/10" />;
     case "h1":
       return (
-        <h1 className="text-xl font-semibold leading-snug tracking-tight text-white md:text-2xl">
+        <h1 className="text-xl font-semibold leading-snug tracking-tight text-foreground md:text-2xl">
           {b.text}
         </h1>
       );
     case "h2":
       return (
-        <h2 className="mt-10 text-base font-semibold uppercase tracking-[0.12em] text-white md:text-lg">
+        <h2 className="mt-10 text-base font-semibold uppercase tracking-[0.12em] text-foreground md:text-lg">
           {b.text}
         </h2>
       );
     case "h3":
       return (
-        <h3 className="mt-5 text-sm font-medium uppercase tracking-[0.14em] text-white/95">
+        <h3 className="mt-5 text-sm font-medium uppercase tracking-[0.14em] text-foreground/90">
           {b.text}
         </h3>
       );

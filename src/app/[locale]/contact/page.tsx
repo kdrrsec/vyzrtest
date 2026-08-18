@@ -28,19 +28,19 @@ export default async function ContactPage({ params }: Props) {
         <ContactForm />
       </div>
 
-      <div className="mt-14 border-t border-white/20 pt-14">
-        <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+      <div className="mt-14 border-t border-black/10 pt-14">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
           {t("detailsTitle")}
         </h2>
         <p className="mt-6 text-sm leading-relaxed text-muted">{t("detailsBody")}</p>
         <div className="mt-8">
           <Link
             href={PATHS.faq}
-            className="inline-flex rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-accent"
+            className="inline-flex rounded-full border border-black/15 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:border-accent"
           >
             {t("openProduct")}
           </Link>
-          <p className="mt-3 text-xs text-zinc-500">{t("ctaReplyNote")}</p>
+          <p className="mt-3 text-xs text-muted">{t("ctaReplyNote")}</p>
         </div>
       </div>
     </div>

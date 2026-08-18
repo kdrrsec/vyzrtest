@@ -225,19 +225,19 @@ export function ProductConfigurator({
 
   const calendlySlot =
     isDropoff && selectedVisorId && calendlyUrl ? (
-      <div className="border-t border-white/20 pt-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+      <div className="border-t border-black/10 pt-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
           {t("calendlyStepTitle")}
         </p>
         <p className="mt-2 text-xs leading-relaxed text-muted">{t("calendlyStepHint")}</p>
         {calendlyBooked ? (
-          <div className="mt-5 flex items-center gap-3 rounded-xl border border-emerald-400/25 bg-emerald-500/[0.08] px-4 py-4">
+          <div className="mt-5 flex items-center gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/[0.07] px-4 py-4">
             <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-xs text-emerald-400"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs text-emerald-700"
             >
               ✓
             </span>
-            <p className="text-sm text-emerald-300">{t("calendlyBooked")}</p>
+            <p className="text-sm text-emerald-700">{t("calendlyBooked")}</p>
           </div>
         ) : (
           <div className="mt-5">
@@ -258,7 +258,7 @@ export function ProductConfigurator({
         <ProductHeroImage product={product} />
 
         <div>
-          <h1 className="text-4xl font-semibold tracking-tightest text-white md:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tightest text-foreground md:text-5xl">
             {product.title}
           </h1>
           <div className="mt-6">
@@ -272,7 +272,7 @@ export function ProductConfigurator({
                 visor={fulfillment === "vyzr_supplies_visor" ? selectedVisor : null}
               />
             ) : (
-              <p className="text-2xl font-light text-white">{price}</p>
+              <p className="text-2xl font-light text-foreground">{price}</p>
             )}
             {isCustomUpload && !setup ? (
               <p className="mt-2 max-w-md text-xs leading-relaxed text-muted">
@@ -294,7 +294,7 @@ export function ProductConfigurator({
               />
               {calendlySlot}
               {product.description?.trim() ? (
-                <div className="border-t border-white/20 pt-8">
+                <div className="border-t border-black/10 pt-8">
                   <ProductDescription html={product.description} />
                 </div>
               ) : null}
@@ -330,7 +330,7 @@ export function ProductConfigurator({
                     block: "start",
                   });
                 }}
-                className="w-full rounded-full border border-white/25 bg-white/[0.03] px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-white transition hover:border-accent/60 hover:text-accent"
+                className="w-full rounded-full border border-black/15 bg-black/[0.02] px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-foreground transition hover:border-accent/60 hover:text-accent"
               >
                 {t("goToCustomizer")}
               </button>
@@ -402,14 +402,14 @@ function ProductPageTrust() {
   const t = useTranslations("Product");
 
   return (
-    <section className="mt-20 border-t border-white/20 pt-16">
+    <section className="mt-20 border-t border-black/10 pt-16">
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <h2 className="text-lg font-medium text-white">{t("trustBuyTitle")}</h2>
+          <h2 className="text-lg font-medium text-foreground">{t("trustBuyTitle")}</h2>
           <p className="mt-3 text-sm text-muted">{t("trustBuyBody")}</p>
         </div>
         <div>
-          <h2 className="text-lg font-medium text-white">{t("trustAfterTitle")}</h2>
+          <h2 className="text-lg font-medium text-foreground">{t("trustAfterTitle")}</h2>
           <blockquote className="mt-3 text-sm text-muted">
             &ldquo;{t("trustQuote")}&rdquo;
           </blockquote>

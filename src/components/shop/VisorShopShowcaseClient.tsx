@@ -116,7 +116,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
         <button
           type="button"
           onClick={() => setFilterOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md border border-white/35 bg-transparent px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-white transition hover:border-white/55"
+          className="inline-flex items-center gap-2 rounded-md border border-black/25 bg-transparent px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-foreground transition hover:border-black/45"
           aria-expanded={filterOpen}
         >
           <FilterIcon className="opacity-90" />
@@ -137,7 +137,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
 
       {filterOpen ? (
         <div
-          className="mt-5 rounded-2xl border border-white/20 bg-black/55 p-5 backdrop-blur-sm md:p-6"
+          className="mt-5 rounded-2xl border border-black/10 bg-white p-5 shadow-sm backdrop-blur-sm md:p-6"
           role="region"
           aria-label={t("Shop.filterPanelAria")}
         >
@@ -151,7 +151,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t("Shop.searchPlaceholder")}
-                className="mt-2 w-full rounded-xl border border-white/20 bg-black/60 px-4 py-2.5 text-sm text-white placeholder:text-muted/70 focus:border-accent/60 focus:outline-none"
+                className="mt-2 w-full rounded-xl border border-black/15 bg-black/[0.02] px-4 py-2.5 text-sm text-foreground placeholder:text-muted/70 focus:border-accent/60 focus:outline-none"
                 autoComplete="off"
               />
             </label>
@@ -163,7 +163,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
-                className="mt-2 w-full cursor-pointer rounded-xl border border-white/20 bg-black/60 px-4 py-2.5 text-sm text-white focus:border-accent/60 focus:outline-none"
+                className="mt-2 w-full cursor-pointer rounded-xl border border-black/15 bg-black/[0.02] px-4 py-2.5 text-sm text-foreground focus:border-accent/60 focus:outline-none"
               >
                 <option value="newest">{t("Shop.sortNewest")}</option>
                 <option value="price-asc">{t("Shop.sortPriceLow")}</option>
@@ -189,8 +189,8 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                       aria-pressed={on}
                       className={
                         on
-                          ? "rounded-full border border-accent bg-accent/15 px-3 py-1.5 text-xs text-white"
-                          : "rounded-full border border-white/20 bg-black/40 px-3 py-1.5 text-xs text-muted transition hover:border-white/35 hover:text-white"
+                          ? "rounded-full border border-accent bg-accent/10 px-3 py-1.5 text-xs text-foreground"
+                          : "rounded-full border border-black/15 bg-black/[0.03] px-3 py-1.5 text-xs text-muted transition hover:border-black/30 hover:text-foreground"
                       }
                     >
                       {tag}
@@ -202,7 +202,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
           ) : null}
 
           {filtersActive ? (
-            <div className="mt-6 flex justify-end border-t border-white/10 pt-4">
+            <div className="mt-6 flex justify-end border-t border-black/10 pt-4">
               <button
                 type="button"
                 onClick={clearFilters}
@@ -242,7 +242,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                   className="group flex h-full flex-col transition-opacity hover:opacity-95"
                 >
                   {/* Vierkante thumb: contain = hele product zichtbaar; lichte padding i.p.v. zware zoom/crop. */}
-                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-neutral-900/90 ring-1 ring-white/12">
+                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-black/[0.03] ring-1 ring-black/10">
                     <span className="absolute right-2.5 top-2.5 z-10 rounded px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white bg-accent">
                       {t("Shop.view3d")}
                     </span>
@@ -259,10 +259,10 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                   </div>
 
                   <div className="mt-4 flex flex-col items-start text-left md:mt-5">
-                    <h2 className="line-clamp-2 text-sm font-semibold uppercase leading-snug tracking-[0.06em] text-white md:text-[15px]">
+                    <h2 className="line-clamp-2 text-sm font-semibold uppercase leading-snug tracking-[0.06em] text-foreground md:text-[15px]">
                       {p.title}
                     </h2>
-                    <p className="mt-2 text-sm font-medium tabular-nums text-white">
+                    <p className="mt-2 text-sm font-medium tabular-nums text-foreground">
                       {t("Shop.priceFrom", { price: money })}
                     </p>
                   </div>

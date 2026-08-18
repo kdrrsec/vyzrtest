@@ -13,7 +13,7 @@ export default async function BookDropoffPage() {
       <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
         {t("eyebrow")}
       </p>
-      <h1 className="mt-4 text-3xl font-semibold tracking-tightest text-white md:text-4xl">
+      <h1 className="mt-4 text-3xl font-semibold tracking-tightest text-foreground md:text-4xl">
         {t("title")}
       </h1>
       <p className="mt-4 text-sm leading-relaxed text-muted">{t("subtitle")}</p>

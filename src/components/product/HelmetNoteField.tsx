@@ -22,8 +22,8 @@ export function HelmetNoteField({
   const showDisclaimer = Boolean(disclaimer?.trim() && value.trim());
 
   return (
-    <div className="border-t border-white/20 pt-8">
-      <label htmlFor="helmet-note" className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+    <div className="border-t border-black/10 pt-8">
+      <label htmlFor="helmet-note" className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
         {t("helmetNoteLabel")}
       </label>
       <p className="mt-2 text-xs leading-relaxed text-muted">{hint ?? t("helmetNoteHint")}</p>
@@ -35,11 +35,11 @@ export function HelmetNoteField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={t("helmetNotePlaceholder")}
-        className="mt-4 w-full resize-y rounded-lg border border-white/25 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        className="mt-4 w-full resize-y rounded-lg border border-black/15 bg-black/[0.02] px-4 py-3 text-sm text-foreground placeholder:text-foreground/35 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
       />
       {showDisclaimer ? (
         <p
-          className="mt-3 rounded-lg border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3 text-xs leading-relaxed text-amber-100/90"
+          className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800"
           role="note"
         >
           {disclaimer}

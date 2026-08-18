@@ -52,8 +52,8 @@ function SlotSection({
   const t = useTranslations("Customizer");
   const inputId = `visor-upload-${slot}`;
   return (
-    <section className="rounded-2xl border border-white/[0.12] bg-white/[0.02] p-6 md:p-8">
-      <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-white">
+    <section className="rounded-2xl border border-black/10 bg-black/[0.015] p-6 md:p-8">
+      <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground">
         {title}
       </h3>
       <p className="mt-2 text-xs text-muted">{hint}</p>
@@ -65,7 +65,7 @@ function SlotSection({
             type="file"
             accept={ACCEPT_IMAGES}
             disabled={disabled}
-            className="block w-full max-w-xs cursor-pointer text-xs text-muted file:mr-3 file:cursor-pointer file:rounded-full file:border-0 file:bg-white file:px-4 file:py-2.5 file:text-[11px] file:font-semibold file:uppercase file:tracking-wider file:text-black hover:file:bg-accent hover:file:text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="block w-full max-w-xs cursor-pointer text-xs text-muted file:mr-3 file:cursor-pointer file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2.5 file:text-[11px] file:font-semibold file:uppercase file:tracking-wider file:text-background hover:file:bg-accent hover:file:text-white disabled:cursor-not-allowed disabled:opacity-50"
             onChange={(e) => {
               const f = e.target.files?.[0] ?? null;
               onFile(slot, f);
@@ -74,7 +74,7 @@ function SlotSection({
           />
         </label>
         {value ? (
-          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-white/15 bg-black">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-black/10 bg-black/5">
             {/* eslint-disable-next-line @next/next/no-img-element -- data URL from customer */}
             <img src={value} alt="" className="h-full w-full object-contain" />
           </div>
@@ -83,12 +83,12 @@ function SlotSection({
       {value ? (
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
           <p
-            className="flex items-center gap-2 text-sm font-medium text-emerald-400"
+            className="flex items-center gap-2 text-sm font-medium text-emerald-700"
             role="status"
             aria-live="polite"
           >
             <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-500/40 bg-emerald-500/10 text-xs leading-none text-emerald-400"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs leading-none text-emerald-700"
               aria-hidden
             >
               ✓
@@ -99,7 +99,7 @@ function SlotSection({
             type="button"
             disabled={disabled}
             onClick={() => onFile(slot, null)}
-            className="text-xs font-medium text-muted underline-offset-4 transition hover:text-white hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+            className="text-xs font-medium text-muted underline-offset-4 transition hover:text-foreground hover:underline disabled:cursor-not-allowed disabled:opacity-50"
           >
             {t("slotDesignRemove")}
           </button>
@@ -153,10 +153,10 @@ export function DesignPicker({
     id === "left" ? t("slotLeftHint") : id === "right" ? t("slotRightHint") : t("slotTopHint");
 
   return (
-    <div className="space-y-14 border-t border-white/15 pt-14">
+    <div className="space-y-14 border-t border-black/10 pt-14">
       <header>
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{t("kicker")}</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-white md:text-3xl">{t("title")}</h2>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">{t("title")}</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{t("lead")}</p>
       </header>
 
@@ -165,8 +165,8 @@ export function DesignPicker({
       {/* Step 1 — setup */}
       <div>
         <div className="flex items-baseline gap-3">
-          <span className="font-mono text-xs tabular-nums text-white/50">01</span>
-          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-white">{t("step1Title")}</h3>
+          <span className="font-mono text-xs tabular-nums text-foreground/40">01</span>
+          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("step1Title")}</h3>
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {SETUPS.map((id) => {
@@ -179,22 +179,22 @@ export function DesignPicker({
                 onClick={() => setSetup(id)}
                 className={`group relative flex flex-col rounded-2xl border px-5 py-6 text-left transition-all duration-200 md:min-h-[9.5rem] ${
                   active
-                    ? "border-accent bg-accent/[0.10] shadow-[0_0_0_1px_rgba(255,45,45,0.4),0_4px_24px_-4px_rgba(255,45,45,0.18)]"
-                    : "border-white/25 bg-white/[0.04] hover:border-white/40 hover:bg-white/[0.07] hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.06)] cursor-pointer"
+                    ? "border-accent bg-accent/[0.08] shadow-[0_0_0_1px_rgba(224,30,30,0.35),0_4px_24px_-4px_rgba(224,30,30,0.15)]"
+                    : "border-black/15 bg-black/[0.02] hover:border-black/25 hover:bg-black/[0.04] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] cursor-pointer"
                 }`}
               >
                 <span
                   className={`absolute right-3 top-3 flex h-4 w-4 items-center justify-center rounded-full border transition-all duration-200 ${
                     active
-                      ? "border-accent bg-accent shadow-[0_0_8px_rgba(255,45,45,0.5)]"
-                      : "border-white/25 group-hover:border-white/40"
+                      ? "border-accent bg-accent shadow-[0_0_8px_rgba(224,30,30,0.4)]"
+                      : "border-black/20 group-hover:border-black/35"
                   }`}
                 >
                   {active ? <span className="block h-1.5 w-1.5 rounded-full bg-white" /> : null}
                 </span>
 
                 {popular ? (
-                  <span className="absolute top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-accent/25 bg-white/[0.06] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/95 shadow-[0_0_0_1px_rgba(255,45,45,0.08),0_0_12px_-2px_rgba(255,45,45,0.18)] backdrop-blur-[2px]">
+                  <span className="absolute top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-accent/25 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/90 shadow-[0_0_0_1px_rgba(224,30,30,0.08),0_0_12px_-2px_rgba(224,30,30,0.15)] backdrop-blur-[2px]">
                     {t("badgePopular")}
                   </span>
                 ) : null}
@@ -202,7 +202,7 @@ export function DesignPicker({
                   {t(`setupName_${id}`)}
                 </span>
                 <span
-                  className={`mt-3 text-2xl font-semibold tabular-nums transition-colors ${active ? "text-white" : "text-white/80 group-hover:text-white"}`}
+                  className={`mt-3 text-2xl font-semibold tabular-nums transition-colors ${active ? "text-foreground" : "text-foreground/70 group-hover:text-foreground"}`}
                 >
                   €{SETUP_PRICES_EUR[id]}
                 </span>
@@ -215,7 +215,7 @@ export function DesignPicker({
 
       {setup === "single" ? (
         <div>
-          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-white">{t("singleSideTitle")}</h3>
+          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("singleSideTitle")}</h3>
           <p className="mt-2 max-w-2xl text-sm text-muted">{t("singleSideHint")}</p>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:max-w-xs">
             {(["left", "right"] as SingleSide[]).map((side) => {
@@ -227,13 +227,13 @@ export function DesignPicker({
                   onClick={() => setSingleSide(side)}
                   className={`group relative flex items-center justify-center gap-2.5 rounded-xl border px-4 py-3.5 text-sm font-medium transition-all duration-200 ${
                     active
-                      ? "border-accent bg-accent/[0.10] text-white shadow-[0_0_0_1px_rgba(255,45,45,0.4)]"
-                      : "border-white/25 bg-white/[0.04] text-white/70 hover:border-white/40 hover:bg-white/[0.07] hover:text-white cursor-pointer"
+                      ? "border-accent bg-accent/[0.08] text-foreground shadow-[0_0_0_1px_rgba(224,30,30,0.35)]"
+                      : "border-black/15 bg-black/[0.02] text-foreground/60 hover:border-black/25 hover:bg-black/[0.04] hover:text-foreground cursor-pointer"
                   }`}
                 >
                   <span
                     className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border transition-all ${
-                      active ? "border-accent bg-accent" : "border-white/30 group-hover:border-white/50"
+                      active ? "border-accent bg-accent" : "border-black/25 group-hover:border-black/40"
                     }`}
                   >
                     {active ? <span className="block h-1 w-1 rounded-full bg-white" /> : null}
@@ -250,13 +250,13 @@ export function DesignPicker({
       {setup ? (
         <div className="space-y-8">
           <div className="flex items-baseline gap-3">
-            <span className="font-mono text-xs tabular-nums text-white/50">02</span>
-            <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-white">{t("step2Title")}</h3>
+            <span className="font-mono text-xs tabular-nums text-foreground/40">02</span>
+            <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("step2Title")}</h3>
           </div>
           <p className="max-w-2xl text-sm text-muted">{t("step2Lead")}</p>
           {!designUploadConfigured ? (
             <p
-              className="rounded-xl border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3 text-xs leading-relaxed text-amber-100/90"
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800"
               role="note"
             >
               {tp("uploadNotConfigured")}
@@ -300,12 +300,12 @@ export function DesignPicker({
 
       {/* Step 3 — checkout */}
       {setup ? (
-        <div className="rounded-2xl border border-white/[0.08] bg-black/50 px-5 py-6 md:px-8 md:py-7">
+        <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 md:px-8 md:py-7">
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="font-mono text-xs tabular-nums text-white/50">03</span>
-                <h3 className="text-sm font-medium normal-case tracking-[0.14em] text-white">
+                <span className="font-mono text-xs tabular-nums text-foreground/40">03</span>
+                <h3 className="text-sm font-medium normal-case tracking-[0.14em] text-foreground">
                   {t("step3Title")}
                 </h3>
               </div>

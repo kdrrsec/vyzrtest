@@ -9,7 +9,7 @@ export async function FinalCta() {
     <section className="py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         {/* Main CTA banner */}
-        <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-white/[0.03]">
+        <div className="relative overflow-hidden rounded-3xl border border-accent/20 bg-black/[0.02]">
           {/* Accent glow */}
           <div
             className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-accent/[0.06] blur-3xl"
@@ -40,7 +40,7 @@ export async function FinalCta() {
               ].map((block) => (
                 <div
                   key={block.title}
-                  className="rounded-xl border border-white/[0.07] bg-white/[0.02] px-5 py-5"
+                  className="rounded-xl border border-black/[0.06] bg-black/[0.015] px-5 py-5"
                 >
                   <div className="mb-3 h-0.5 w-6 bg-accent/70" />
                   <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-foreground">

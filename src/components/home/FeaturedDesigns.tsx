@@ -44,7 +44,7 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
     : source;
 
   return (
-    <section className="border-t border-white/[0.08] py-20">
+    <section className="border-t border-black/[0.08] py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         {/* Header */}
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -93,7 +93,7 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
               <Link
                 key={`${p.handle}-${index}`}
                 href={`${PATHS.product(p.handle)}#product-viewer`}
-                className="group relative overflow-hidden rounded-2xl border border-white/[0.09] bg-white/[0.03] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(255,45,45,0.25)]"
+                className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)]"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-background">

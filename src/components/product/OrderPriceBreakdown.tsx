@@ -28,13 +28,13 @@ export function OrderPriceBreakdown({
   const total = engravingNum + visorNum;
 
   return (
-    <div className="mt-4 space-y-2 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-4 text-sm">
+    <div className="mt-4 space-y-2 rounded-xl border border-black/10 bg-black/[0.015] px-4 py-4 text-sm">
       <div className="flex justify-between gap-4 text-muted">
         <span>{t("priceLineEngraving")}</span>
-        <span className="shrink-0 text-right text-white">
+        <span className="shrink-0 text-right text-foreground">
           {showEngravingDiscount ? (
             <>
-              <span className="mr-2 text-white/40 line-through">
+              <span className="mr-2 text-foreground/35 line-through">
                 {formatMoney(engravingBase, currency)}
               </span>
               {formatMoney(engravingDiscounted, currency)}
@@ -52,12 +52,12 @@ export function OrderPriceBreakdown({
       {visor ? (
         <div className="flex justify-between gap-4 text-muted">
           <span>{t("priceLineVisor")}</span>
-          <span className="shrink-0 text-white">
+          <span className="shrink-0 text-foreground">
             +{formatMoney(String(visor.priceEUR), currency)}
           </span>
         </div>
       ) : null}
-      <div className="flex justify-between gap-4 border-t border-white/10 pt-2 font-medium text-white">
+      <div className="flex justify-between gap-4 border-t border-black/10 pt-2 font-medium text-foreground">
         <span>{t("priceLineTotal")}</span>
         <span className="shrink-0 text-lg">
           {formatMoney(String(total.toFixed(2)), currency)}

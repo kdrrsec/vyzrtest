@@ -27,7 +27,7 @@ export default async function ThankYouPage({
         {t("eyebrow")}
       </p>
 
-      <h1 className="mt-4 text-3xl font-semibold tracking-tightest text-white md:text-4xl">
+      <h1 className="mt-4 text-3xl font-semibold tracking-tightest text-foreground md:text-4xl">
         {t("title")}
       </h1>
 
@@ -48,7 +48,7 @@ export default async function ThankYouPage({
         </Link>
         <Link
           href={PATHS.shopVisors}
-          className="inline-flex px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted transition hover:text-white"
+          className="inline-flex px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-muted transition hover:text-foreground"
         >
           {t("browseShop")}
         </Link>

@@ -12,7 +12,7 @@ export async function WhatsAppBookLink() {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-[#25D366]/35 bg-[#25D366]/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#5dde8a] transition hover:border-[#25D366]/60 hover:bg-[#25D366]/15 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:w-auto"
+      className="mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#128c4a] transition hover:border-[#25D366]/70 hover:bg-[#25D366]/20 hover:text-[#0e6b39] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:w-auto"
     >
       <WhatsAppIcon className="h-4 w-4 shrink-0" />
       {t("bookVia")}

@@ -62,10 +62,10 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="min-h-dvh bg-black font-sans text-white">
+      <body className="min-h-dvh bg-background font-sans text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SiteHeader />
-          <main className="min-h-0 bg-black">{children}</main>
+          <main className="min-h-0 bg-background">{children}</main>
           <BottomTrustStrip />
           <SiteFooter />
           <WhatsAppFab />

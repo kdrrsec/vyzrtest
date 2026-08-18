@@ -16,7 +16,7 @@ export async function Hero() {
         {/* Background media */}
         {media.kind === "video" ? (
           <video
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-60"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-90"
             autoPlay
             muted
             loop
@@ -32,7 +32,7 @@ export async function Hero() {
             src={media.src}
             alt={t("heroImageAlt")}
             fill
-            className="object-cover object-center opacity-60"
+            className="object-cover object-center opacity-90"
             sizes="100vw"
             priority
           />
@@ -40,7 +40,7 @@ export async function Hero() {
 
         {/* Gunmetal gradient overlays */}
         <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/95 via-background/60 to-background/10"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/90 via-background/45 to-background/5"
           aria-hidden
         />
         <div
@@ -78,7 +78,7 @@ export async function Hero() {
                   </Link>
                   <Link
                     href={PATHS.shopVisors}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.04] px-8 py-4 text-sm font-semibold tracking-wide text-foreground backdrop-blur-sm transition hover:border-accent/60 hover:text-accent"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-8 py-4 text-sm font-semibold tracking-wide text-foreground backdrop-blur-sm transition hover:border-accent/60 hover:text-accent"
                   >
                     {t("heroCtaShop")}
                   </Link>

@@ -16,10 +16,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#000000",
-        foreground: "#ffffff",
-        accent: "#FF2D2D",
-        muted: "rgba(255, 255, 255, 0.78)",
+        background: "#FAFAFA",
+        foreground: "#0A0A0A",
+        accent: "#E01E1E",
+        muted: "rgba(10, 10, 10, 0.65)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],

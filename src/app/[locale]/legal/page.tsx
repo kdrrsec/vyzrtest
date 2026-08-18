@@ -31,13 +31,13 @@ export default async function LegalPage({ params }: Props) {
       <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{t("eyebrow")}</p>
       <article className="mt-6">
         <LegalArticle locale={locale} />
-        <p className="mt-14 border-t border-white/15 pt-8 text-xs font-medium uppercase tracking-wider text-muted">
+        <p className="mt-14 border-t border-black/10 pt-8 text-xs font-medium uppercase tracking-wider text-muted">
           {t("lastUpdated", { date })}
         </p>
       </article>
       <Link
         href={PATHS.home}
-        className="mt-10 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-accent hover:text-white"
+        className="mt-10 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-accent hover:text-foreground"
       >
         {t("backHome")}
       </Link>

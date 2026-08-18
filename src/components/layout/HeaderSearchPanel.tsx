@@ -63,7 +63,7 @@ export function HeaderSearchPanel() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/80 px-4 pt-[max(4rem,10vh)] backdrop-blur-sm md:pt-[12vh]">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/30 px-4 pt-[max(4rem,10vh)] backdrop-blur-sm md:pt-[12vh]">
       <button
         type="button"
         className="absolute inset-0"
@@ -71,25 +71,25 @@ export function HeaderSearchPanel() {
         onClick={() => setOpen(false)}
       />
       <div
-        className="relative w-full max-w-xl rounded-2xl border border-white/25 bg-black shadow-2xl"
+        className="relative w-full max-w-xl rounded-2xl border border-black/10 bg-white shadow-2xl"
         role="dialog"
         aria-modal="true"
         aria-label={t("dialogLabel")}
       >
-        <div className="flex items-center gap-3 border-b border-white/20 px-4 py-3">
+        <div className="flex items-center gap-3 border-b border-black/10 px-4 py-3">
           <SearchGlyph className="h-5 w-5 shrink-0 text-muted" />
           <input
             id="header-search-input"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("placeholder")}
-            className="min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-muted outline-none"
+            className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted outline-none"
             autoComplete="off"
           />
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="rounded-full p-2 text-muted hover:bg-white/5 hover:text-white"
+            className="rounded-full p-2 text-muted hover:bg-black/5 hover:text-foreground"
             aria-label={tNav("close")}
           >
             <CloseGlyph className="h-5 w-5" />
@@ -109,9 +109,9 @@ export function HeaderSearchPanel() {
                   <Link
                     href={PATHS.product(p.handle)}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-white/[0.06]"
+                    className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-black/[0.04]"
                   >
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-white/5">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-black/[0.04]">
                       <Image
                         src={p.featuredImage?.url?.trim() || PLACEHOLDER.thumb}
                         alt={p.featuredImage?.altText?.trim() || p.title}
@@ -121,7 +121,7 @@ export function HeaderSearchPanel() {
                       />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-white">{p.title}</p>
+                      <p className="text-sm font-medium text-foreground">{p.title}</p>
                       <p className="text-xs text-muted">
                         {formatMoney(
                           p.priceRange.minVariantPrice.amount,

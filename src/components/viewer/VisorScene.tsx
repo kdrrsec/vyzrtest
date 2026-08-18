@@ -138,7 +138,7 @@ export function VisorScene({
       }}
       dpr={[1, 2]}
       onCreated={({ gl, scene }) => {
-        gl.setClearColor(0x000000, 0);
+        gl.setClearColor(0xffffff, 0);
         scene.background = null;
       }}
     >

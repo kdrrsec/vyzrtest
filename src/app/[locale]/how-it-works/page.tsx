@@ -24,15 +24,15 @@ export default async function HowItWorksPage({ params }: Props) {
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
           {t("pageEyebrow")}
         </p>
-        <h1 className="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
+        <h1 className="mt-4 max-w-2xl text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
           {t("pageTitle")}
         </h1>
-        <p className="mt-6 max-w-xl text-sm leading-relaxed text-zinc-300">{t("pageLead")}</p>
+        <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted">{t("pageLead")}</p>
         <div className="mt-6 flex max-w-3xl flex-wrap gap-2">
           {highlights.map((item) => (
             <span
               key={item}
-              className="rounded-full border border-accent/20 bg-accent/[0.04] px-3 py-1 text-[11px] font-medium tracking-wide text-zinc-200 shadow-[0_0_10px_rgba(255,45,45,0.08)] transition duration-200 hover:border-accent/50 hover:bg-accent/[0.08] hover:shadow-[0_0_18px_rgba(255,45,45,0.22)]"
+              className="rounded-full border border-accent/20 bg-accent/[0.04] px-3 py-1 text-[11px] font-medium tracking-wide text-foreground/80 shadow-[0_0_8px_rgba(224,30,30,0.06)] transition duration-200 hover:border-accent/50 hover:bg-accent/[0.08] hover:shadow-[0_0_14px_rgba(224,30,30,0.15)]"
             >
               {item}
             </span>

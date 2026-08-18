@@ -11,17 +11,17 @@ export async function BeforeAfter() {
     <section className="py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <h2 className="text-2xl font-semibold tracking-tight text-white">{t("title")}</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{t("title")}</h2>
           <Link
             href={PATHS.shopVisors}
-            className="text-xs font-mono uppercase tracking-[0.2em] text-accent hover:text-white"
+            className="text-xs font-mono uppercase tracking-[0.2em] text-accent hover:text-foreground"
           >
             {t("link")}
           </Link>
         </div>
         <p className="mt-4 max-w-xl text-sm text-muted">{t("body")}</p>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <div className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-2xl border border-white/20 bg-black">
+          <div className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-2xl border border-black/10 bg-black/5">
             <Image
               src={PLACEHOLDER.before}
               alt=""
@@ -33,7 +33,7 @@ export async function BeforeAfter() {
               {t("before")}
             </div>
           </div>
-          <div className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-2xl border border-accent/30 bg-black">
+          <div className="relative flex aspect-[4/3] items-end justify-center overflow-hidden rounded-2xl border border-accent/30 bg-black/5">
             <Image
               src={PLACEHOLDER.after}
               alt=""

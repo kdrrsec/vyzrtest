@@ -23,14 +23,14 @@ export default async function FaqPage({ params }: Props) {
       <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">
         {t("eyebrow")}
       </p>
-      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white">
+      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground">
         {t("heading")}
       </h1>
       <p className="mt-4 text-sm text-muted">{t("intro")}</p>
       <div className="mt-12 space-y-10">
         {FAQ_IDS.map((n) => (
-          <div key={n} className="border-b border-white/20 pb-10">
-            <h2 className="text-lg font-medium text-white">{t(`q${n}`)}</h2>
+          <div key={n} className="border-b border-black/10 pb-10">
+            <h2 className="text-lg font-medium text-foreground">{t(`q${n}`)}</h2>
             <p className="mt-3 whitespace-pre-line text-sm text-muted">{t(`a${n}`)}</p>
           </div>
         ))}

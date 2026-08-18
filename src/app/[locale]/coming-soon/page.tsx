@@ -23,7 +23,7 @@ export default async function ComingSoonPage({ params }: Props) {
       <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{t("eyebrow")}</p>
 
       <div className="mt-8 text-center">
-        <p className="text-4xl font-semibold tracking-tight text-white md:text-5xl">{t("title")}</p>
+        <p className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">{t("title")}</p>
         <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-muted">{t("body")}</p>
       </div>
 
@@ -31,8 +31,8 @@ export default async function ComingSoonPage({ params }: Props) {
         <NewsletterSignup />
       </div>
 
-      <div className="mt-14 flex flex-wrap justify-center gap-4 border-t border-white/20 pt-14 text-sm">
-        <Link href={PATHS.home} className="text-muted underline-offset-4 transition hover:text-white hover:underline">
+      <div className="mt-14 flex flex-wrap justify-center gap-4 border-t border-black/10 pt-14 text-sm">
+        <Link href={PATHS.home} className="text-muted underline-offset-4 transition hover:text-foreground hover:underline">
           {t("backHome")}
         </Link>
         <Link href={PATHS.shopVisors} className="text-accent underline-offset-4 hover:underline">

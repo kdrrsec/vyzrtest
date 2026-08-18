@@ -54,7 +54,7 @@ export function BookDropoffClient({
   if (loading) {
     return (
       <div className="mt-10 flex justify-center">
-        <span className="h-6 w-6 animate-spin rounded-full border-2 border-white/20 border-t-accent" />
+        <span className="h-6 w-6 animate-spin rounded-full border-2 border-black/15 border-t-accent" />
         <span className="ml-3 text-sm text-muted">{loadingLabel}</span>
       </div>
     );

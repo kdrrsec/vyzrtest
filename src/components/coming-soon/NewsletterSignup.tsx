@@ -29,8 +29,8 @@ export function NewsletterSignup() {
 
   if (state.success) {
     return (
-      <div className="w-full rounded-2xl border border-white/25 bg-white/[0.03] px-8 py-14 backdrop-blur-sm">
-        <p className="text-center text-2xl font-semibold tracking-tight text-white md:text-3xl">
+      <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] px-8 py-14 backdrop-blur-sm">
+        <p className="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
           {t("thanksTitle")}
         </p>
         <p className="mt-4 text-center text-sm text-muted">{t("thanksBody")}</p>
@@ -39,8 +39,8 @@ export function NewsletterSignup() {
   }
 
   return (
-    <div className="w-full rounded-2xl border border-white/25 bg-white/[0.03] px-8 py-10 backdrop-blur-sm md:px-10 md:py-12">
-      <h2 className="text-center text-2xl font-semibold tracking-tight text-white md:text-3xl">
+    <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] px-8 py-10 backdrop-blur-sm md:px-10 md:py-12">
+      <h2 className="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
         {t("formTitle")}
       </h2>
       <p className="mt-3 text-center text-sm text-muted">{t("formHint")}</p>
@@ -53,7 +53,7 @@ export function NewsletterSignup() {
             type="email"
             autoComplete="email"
             required
-            className="w-full border-0 bg-transparent py-1 text-sm text-white caret-white outline-none ring-0 placeholder:text-muted focus:ring-0"
+            className="w-full border-0 bg-transparent py-1 text-sm text-foreground caret-foreground outline-none ring-0 placeholder:text-muted focus:ring-0"
           />
         </FieldGroup>
 
@@ -63,7 +63,7 @@ export function NewsletterSignup() {
             type="checkbox"
             value="true"
             required
-            className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-black accent-accent"
+            className="mt-1 h-4 w-4 shrink-0 rounded border-black/25 bg-white accent-accent"
           />
           <span>{t("consent")}</span>
         </label>
@@ -96,10 +96,10 @@ function FieldGroup({
   children: ReactNode;
 }) {
   return (
-    <div className="relative border border-white/20 bg-black px-3 pb-2 pt-7 transition-colors focus-within:border-accent/55">
+    <div className="relative border border-black/15 bg-black/[0.015] px-3 pb-2 pt-7 transition-colors focus-within:border-accent/55">
       <label
         htmlFor={htmlFor}
-        className="absolute left-3 top-2 cursor-text font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-white"
+        className="absolute left-3 top-2 cursor-text font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground"
       >
         {label}
       </label>

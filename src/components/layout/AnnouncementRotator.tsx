@@ -37,7 +37,7 @@ export function AnnouncementRotator({ slideA, slideB }: Props) {
     return (
       <p className={lineClassStatic}>
         {slideA}
-        <span className="mx-2 text-white/35" aria-hidden>
+        <span className="mx-2 text-black/30" aria-hidden>
           ·
         </span>
         {slideB}
