@@ -44,7 +44,7 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
     : source;
 
   return (
-    <section className="border-t border-black/[0.08] py-20">
+    <section className="py-20">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         {/* Header */}
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -56,25 +56,22 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
               {t("title")}
             </h2>
           </div>
-          <div className={`flex flex-col gap-3 ${splitCustom ? "items-start md:items-end" : "items-start md:items-end"}`}>
+          <div className="flex flex-col items-start gap-2 md:items-end">
+            {/* Primary action for this section: see the full range of designs */}
+            <Link
+              href={PATHS.shopVisors}
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/15 bg-white/60 px-6 py-3 text-center text-sm font-semibold tracking-wide text-foreground transition hover:border-accent/60 hover:text-accent"
+            >
+              {t("cta")}
+            </Link>
             {splitCustom ? (
               <Link
                 href={PATHS.customVisor}
-                className="btn-accent inline-flex shrink-0 px-6 py-3 text-center text-sm font-semibold tracking-wide"
+                className="font-mono text-xs uppercase tracking-[0.16em] text-muted transition hover:text-accent"
               >
                 {t("ctaCustom")}
               </Link>
             ) : null}
-            <Link
-              href={PATHS.shopVisors}
-              className={
-                splitCustom
-                  ? "font-mono text-xs uppercase tracking-[0.16em] text-accent transition hover:text-foreground"
-                  : "btn-accent inline-flex shrink-0 px-6 py-3.5 text-center text-sm font-semibold tracking-wide"
-              }
-            >
-              {t("cta")}
-            </Link>
           </div>
         </div>
 
