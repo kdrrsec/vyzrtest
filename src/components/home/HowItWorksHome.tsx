@@ -76,68 +76,80 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
           </ol>
         </div>
 
-        <div
-          id="delivery-options"
-          className="mt-16 scroll-mt-28 border-t border-black/[0.08] pt-14 md:mt-20 md:pt-16"
-        >
-          <h3 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
-            {t("deliveryTitle")}
-          </h3>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 md:gap-8">
-            {deliveryOptions.map((option) => (
-              <article
-                key={option.title}
-                className="flex flex-col rounded-2xl border border-black/[0.08] bg-background p-6 shadow-sm md:p-8"
-              >
-                <div>
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-foreground">
-                    {option.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">
-                    &ldquo;{option.body}&rdquo;
-                  </p>
-                </div>
-                <ul className="mt-6 space-y-2.5 border-t border-black/10 pt-6">
-                  {option.highlights.map((item) => (
-                    <li key={item} className="flex gap-2.5 text-sm leading-snug text-muted">
-                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/90" aria-hidden />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {option.showWhatsAppBook ? <WhatsAppBookLink /> : null}
-              </article>
-            ))}
-          </div>
-
-          <p
-            className="mt-8 rounded-2xl border border-accent/25 bg-accent/[0.06] px-5 py-4 text-center text-sm font-medium leading-relaxed text-foreground/80 shadow-[0_0_20px_-8px_rgba(224,30,30,0.15)] md:mt-10 md:px-6 md:py-5"
-            role="note"
-          >
-            <span className="text-accent">{t("deliveryImportantLead")}:</span>{" "}
-            {t("deliveryImportantBody")}
-          </p>
-        </div>
-
-        <p
-          className={`mx-auto max-w-2xl text-center text-sm leading-relaxed text-muted ${
-            isPage ? "mt-10 md:mt-12" : "mt-8"
-          }`}
-        >
-          <span className="mr-2 text-accent">✓</span>
-          {t("reviewNote")}
-        </p>
-
         {isPage ? (
-          <div className="mt-10 flex justify-center md:mt-12">
-            <Link
-              href={PATHS.shopVisors}
-              className="btn-accent inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em]"
+          <div
+            id="delivery-options"
+            className="mt-16 scroll-mt-28 border-t border-black/[0.08] pt-14 md:mt-20 md:pt-16"
+          >
+            <h3 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
+              {t("deliveryTitle")}
+            </h3>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2 md:gap-8">
+              {deliveryOptions.map((option) => (
+                <article
+                  key={option.title}
+                  className="flex flex-col rounded-2xl border border-black/[0.08] bg-background p-6 shadow-sm md:p-8"
+                >
+                  <div>
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-foreground">
+                      {option.title}
+                    </h4>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">
+                      &ldquo;{option.body}&rdquo;
+                    </p>
+                  </div>
+                  <ul className="mt-6 space-y-2.5 border-t border-black/10 pt-6">
+                    {option.highlights.map((item) => (
+                      <li key={item} className="flex gap-2.5 text-sm leading-snug text-muted">
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/90" aria-hidden />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  {option.showWhatsAppBook ? <WhatsAppBookLink /> : null}
+                </article>
+              ))}
+            </div>
+
+            <p
+              className="mt-8 rounded-2xl border border-accent/25 bg-accent/[0.06] px-5 py-4 text-center text-sm font-medium leading-relaxed text-foreground/80 shadow-[0_0_20px_-8px_rgba(224,30,30,0.15)] md:mt-10 md:px-6 md:py-5"
+              role="note"
             >
-              {t("pageCta")}
+              <span className="text-accent">{t("deliveryImportantLead")}:</span>{" "}
+              {t("deliveryImportantBody")}
+            </p>
+          </div>
+        ) : (
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-black/[0.08] pt-8">
+            <p className="text-sm text-muted">
+              <span className="mr-2 text-accent">✓</span>
+              {t("reviewNote")}
+            </p>
+            <Link
+              href={`${PATHS.howItWorks}#delivery-options`}
+              className="text-sm font-semibold text-accent transition hover:text-foreground"
+            >
+              {t("deliveryTitle")} →
             </Link>
           </div>
+        )}
+
+        {isPage ? (
+          <>
+            <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-muted md:mt-12">
+              <span className="mr-2 text-accent">✓</span>
+              {t("reviewNote")}
+            </p>
+            <div className="mt-10 flex justify-center md:mt-12">
+              <Link
+                href={PATHS.shopVisors}
+                className="btn-accent inline-flex px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em]"
+              >
+                {t("pageCta")}
+              </Link>
+            </div>
+          </>
         ) : null}
       </div>
     </section>
