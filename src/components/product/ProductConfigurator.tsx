@@ -253,7 +253,9 @@ export function ProductConfigurator({
   const checkoutDisabledForCalendly = isDropoff && !!calendlyUrl && !calendlyBooked;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 md:px-6">
+    <div>
+    <section className="bg-background py-14">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
       <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <ProductHeroImage product={product} />
 
@@ -330,7 +332,7 @@ export function ProductConfigurator({
                     block: "start",
                   });
                 }}
-                className="w-full rounded-full border border-black/15 bg-black/[0.02] px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-foreground transition hover:border-accent/60 hover:text-accent"
+                className="btn-accent w-full px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em]"
               >
                 {t("goToCustomizer")}
               </button>
@@ -358,51 +360,56 @@ export function ProductConfigurator({
           <p className="mt-4 text-xs text-muted">{t("bagHint")}</p>
         </div>
       </div>
+      </div>
+    </section>
 
       {isCustomUpload ? (
-        <div id="customizer-section" className="mt-16 scroll-mt-28 lg:mt-20">
-          <DesignPicker
-            fulfillment={fulfillment}
-            onFulfillmentChange={onFulfillmentChange}
-            selectedVisorId={selectedVisorId}
-            onSelectedVisorIdChange={setSelectedVisorId}
-            engravingPrice={engravingPrice}
-            designUploadConfigured={designUploadConfigured}
-            calendlySlot={calendlySlot}
-            checkoutSlot={
-              variant ? (
-                <CheckoutButton
-                  variantId={variant.id}
-                  resolveLineAttributes={resolveCustomLineAttributes}
-                  extraCartLines={extraCartLines}
-                  applyVyzrSuppliesDiscount={applyVyzrSuppliesDiscount}
-                  isDropoff={isDropoff}
-                  disabled={
-                    !customUploadReady ||
-                    !fulfillmentReady ||
-                    !designUploadConfigured ||
-                    checkoutDisabledForCalendly
-                  }
-                  sentenceCase
-                >
-                  {tc("addToCartLong")}
-                </CheckoutButton>
-              ) : null
-            }
-          />
-        </div>
+        <section id="customizer-section" className="scroll-mt-28 bg-black/[0.02] py-16 md:py-20">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <DesignPicker
+              fulfillment={fulfillment}
+              onFulfillmentChange={onFulfillmentChange}
+              selectedVisorId={selectedVisorId}
+              onSelectedVisorIdChange={setSelectedVisorId}
+              engravingPrice={engravingPrice}
+              designUploadConfigured={designUploadConfigured}
+              calendlySlot={calendlySlot}
+              checkoutSlot={
+                variant ? (
+                  <CheckoutButton
+                    variantId={variant.id}
+                    resolveLineAttributes={resolveCustomLineAttributes}
+                    extraCartLines={extraCartLines}
+                    applyVyzrSuppliesDiscount={applyVyzrSuppliesDiscount}
+                    isDropoff={isDropoff}
+                    disabled={
+                      !customUploadReady ||
+                      !fulfillmentReady ||
+                      !designUploadConfigured ||
+                      checkoutDisabledForCalendly
+                    }
+                    sentenceCase
+                  >
+                    {tc("addToCartLong")}
+                  </CheckoutButton>
+                ) : null
+              }
+            />
+          </div>
+        </section>
       ) : null}
 
-      <ProductPageTrust />
+      <ProductPageTrust tinted={!isCustomUpload} />
     </div>
   );
 }
 
-function ProductPageTrust() {
+function ProductPageTrust({ tinted = false }: { tinted?: boolean }) {
   const t = useTranslations("Product");
 
   return (
-    <section className="mt-20 border-t border-black/10 pt-16">
+    <section className={`py-16 md:py-20 ${tinted ? "bg-black/[0.02]" : "bg-background"}`}>
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
       <div className="grid gap-10 md:grid-cols-2">
         <div>
           <h2 className="text-lg font-medium text-foreground">{t("trustBuyTitle")}</h2>
@@ -415,6 +422,7 @@ function ProductPageTrust() {
           </blockquote>
           <p className="mt-2 text-xs text-muted">{t("trustNote")}</p>
         </div>
+      </div>
       </div>
     </section>
   );

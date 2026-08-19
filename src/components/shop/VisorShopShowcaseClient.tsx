@@ -239,14 +239,11 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
               >
                 <Link
                   href={`${PATHS.product(p.handle)}#product-viewer`}
-                  className="group flex h-full flex-col transition-opacity hover:opacity-95"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)]"
                 >
                   {/* Vierkante thumb: contain = hele product zichtbaar; lichte padding i.p.v. zware zoom/crop. */}
-                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-black/[0.03] ring-1 ring-black/10">
-                    <span className="absolute right-2.5 top-2.5 z-10 rounded px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-white bg-accent">
-                      {t("Shop.view3d")}
-                    </span>
-                    <div className="absolute inset-0 p-[5%] transition-transform duration-300 group-hover:scale-[1.02]">
+                  <div className="relative aspect-square w-full overflow-hidden bg-background">
+                    <div className="absolute inset-0 p-[5%] transition-transform duration-300 group-hover:scale-[1.03]">
                       <Image
                         src={thumbSrc}
                         alt={p.featuredImage?.altText?.trim() || p.title}
@@ -256,16 +253,22 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                         priority={false}
                       />
                     </div>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+                    <span className="absolute right-3 top-3 rounded-full border border-accent/30 bg-background/80 px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-accent backdrop-blur-sm">
+                      {t("Shop.view3d")}
+                    </span>
                   </div>
 
-                  <div className="mt-4 flex flex-col items-start text-left md:mt-5">
-                    <h2 className="line-clamp-2 text-sm font-semibold uppercase leading-snug tracking-[0.06em] text-foreground md:text-[15px]">
+                  <div className="flex items-center justify-between gap-4 px-5 py-4">
+                    <h2 className="line-clamp-2 text-sm font-medium leading-snug text-foreground">
                       {p.title}
                     </h2>
-                    <p className="mt-2 text-sm font-medium tabular-nums text-foreground">
+                    <p className="ml-4 shrink-0 font-mono text-sm font-semibold text-accent">
                       {t("Shop.priceFrom", { price: money })}
                     </p>
                   </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
                 </Link>
               </article>
             );
