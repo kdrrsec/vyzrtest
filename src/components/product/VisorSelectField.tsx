@@ -46,7 +46,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
           {popular.map((v) => (
             <option key={v.id} value={v.id} className="bg-white">
               {visorDisplayLabel(v)}
-              {mode === "supply" ? ` — ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
+              {mode === "supply" ? ` · ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
             </option>
           ))}
         </optgroup>
@@ -55,7 +55,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
             {items.map((v) => (
               <option key={v.id} value={v.id} className="bg-white">
                 {visorDisplayLabel(v)}
-                {mode === "supply" ? ` — ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
+                {mode === "supply" ? ` · ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
               </option>
             ))}
           </optgroup>

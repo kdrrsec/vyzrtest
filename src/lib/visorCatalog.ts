@@ -38,7 +38,7 @@ export function getVisorById(id: string | null | undefined): VisorCatalogEntry |
 }
 
 export function visorDisplayLabel(entry: VisorCatalogEntry): string {
-  return `${entry.brand} ${entry.helmet} — ${entry.finish}`;
+  return `${entry.brand} ${entry.helmet} · ${entry.finish}`;
 }
 
 export function visorsByBrand(): { brand: string; items: VisorCatalogEntry[] }[] {

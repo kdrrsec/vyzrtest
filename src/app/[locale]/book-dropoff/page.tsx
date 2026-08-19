@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { BookDropoffClient } from "./BookDropoffClient";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { title: "Book your drop-off — VYZR" };
+  return { title: "Book your drop-off | VYZR" };
 }
 
 export default async function BookDropoffPage() {

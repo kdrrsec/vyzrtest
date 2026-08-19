@@ -53,7 +53,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
         </TitleTag>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{t("homeLead")}</p>
 
-        {/* Numbered process — order → ship → engrave */}
+        {/* Numbered process: order, ship, engrave */}
         <div className="relative mt-14">
           <div
             className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-accent/30 via-black/10 to-accent/30 md:block"
