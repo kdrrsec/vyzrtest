@@ -246,37 +246,43 @@ export function DesignPicker({
         </div>
       ) : null}
 
-      {/* Step 2 — upload designs */}
-      {setup ? (
-        <div className="space-y-8">
-          <div className="flex items-baseline gap-3">
-            <span className="font-mono text-xs tabular-nums text-foreground/40">02</span>
-            <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("step2Title")}</h3>
-          </div>
-          <p className="max-w-2xl text-sm text-muted">{t("step2Lead")}</p>
-          {!designUploadConfigured ? (
-            <p
-              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
-              role="note"
-            >
-              {tp("uploadNotConfigured")}
-            </p>
-          ) : null}
-          <div className="space-y-10">
-            {slotsForSetup(setup, singleSide).map((slot) => (
-              <SlotSection
-                key={slot}
-                slot={slot}
-                title={slotTitle(slot)}
-                hint={slotHint(slot)}
-                value={uploads[slot]}
-                onFile={onSlotFile}
-                disabled={!designUploadConfigured}
-              />
-            ))}
-          </div>
+      {/* Step 2 — upload designs (always visible so customers see this step exists; locked until a setup is picked) */}
+      <div className="space-y-8">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-xs tabular-nums text-foreground/40">02</span>
+          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("step2Title")}</h3>
         </div>
-      ) : null}
+        {setup ? (
+          <>
+            <p className="max-w-2xl text-sm text-muted">{t("step2Lead")}</p>
+            {!designUploadConfigured ? (
+              <p
+                className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
+                role="note"
+              >
+                {tp("uploadNotConfigured")}
+              </p>
+            ) : null}
+            <div className="space-y-10">
+              {slotsForSetup(setup, singleSide).map((slot) => (
+                <SlotSection
+                  key={slot}
+                  slot={slot}
+                  title={slotTitle(slot)}
+                  hint={slotHint(slot)}
+                  value={uploads[slot]}
+                  onFile={onSlotFile}
+                  disabled={!designUploadConfigured}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.015] px-6 py-8 text-sm text-muted dark:border-white/15 dark:bg-white/[0.02]">
+            {t("lockedHint")}
+          </p>
+        )}
+      </div>
 
       <div className="space-y-0">
         <VisorSelectField
@@ -298,17 +304,17 @@ export function DesignPicker({
         />
       ) : null}
 
-      {/* Step 3 — checkout */}
-      {setup ? (
-        <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 dark:border-white/10 dark:bg-white/[0.03] md:px-8 md:py-7">
-          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="font-mono text-xs tabular-nums text-foreground/40">03</span>
-                <h3 className="text-sm font-medium normal-case tracking-[0.14em] text-foreground">
-                  {t("step3Title")}
-                </h3>
-              </div>
+      {/* Step 3 — checkout (always visible so customers see the destination; locked until a setup is picked) */}
+      <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 dark:border-white/10 dark:bg-white/[0.03] md:px-8 md:py-7">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="font-mono text-xs tabular-nums text-foreground/40">03</span>
+              <h3 className="text-sm font-medium normal-case tracking-[0.14em] text-foreground">
+                {t("step3Title")}
+              </h3>
+            </div>
+            {setup ? (
               <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
                 <li className="flex gap-2">
                   <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/80" aria-hidden />
@@ -319,13 +325,22 @@ export function DesignPicker({
                   {t("noteReview")}
                 </li>
               </ul>
-            </div>
-            {checkoutSlot ? (
-              <div className="w-full shrink-0 md:w-auto md:max-w-sm md:min-w-[16rem]">{checkoutSlot}</div>
-            ) : null}
+            ) : (
+              <p className="mt-4 text-sm text-muted">{t("lockedHint")}</p>
+            )}
           </div>
+          {setup && checkoutSlot ? (
+            <div className="w-full shrink-0 md:w-auto md:max-w-sm md:min-w-[16rem]">{checkoutSlot}</div>
+          ) : (
+            <div
+              className="w-full shrink-0 rounded-full border border-black/10 px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted opacity-50 dark:border-white/10 md:w-auto md:max-w-sm md:min-w-[16rem]"
+              aria-hidden
+            >
+              {t("addToCartLong")}
+            </div>
+          )}
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }

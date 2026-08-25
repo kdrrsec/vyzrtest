@@ -368,6 +368,7 @@
     "singleSideRight": "Rechterzijde",
     "step2Title": "Per positie uploaden",
     "step2Lead": "Elke zijde heeft een eigen ontwerp.",
+    "lockedHint": "Kies hierboven een setup om deze stap te ontgrendelen.",
     "slotLeftTitle": "Linkerkant",
     "slotLeftHint": "PNG, JPG of SVG. Verschijnt op het linkse segment in de preview.",
     "slotRightTitle": "Rechterkant",

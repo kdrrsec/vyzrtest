@@ -370,6 +370,7 @@
     "singleSideRight": "Right side",
     "step2Title": "Customize each position",
     "step2Lead": "Each side has its own design.",
+    "lockedHint": "Pick a setup above to unlock this step.",
     "slotLeftTitle": "Left side",
     "slotLeftHint": "PNG, JPG, or SVG. Shown on the left segment of the visor preview.",
     "slotRightTitle": "Right side",
