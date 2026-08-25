@@ -225,7 +225,7 @@ export function ProductConfigurator({
 
   const calendlySlot =
     isDropoff && selectedVisorId && calendlyUrl ? (
-      <div className="border-t border-black/10 pt-8">
+      <div className="border-t border-black/10 dark:border-white/10 pt-8">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
           {t("calendlyStepTitle")}
         </p>
@@ -233,11 +233,11 @@ export function ProductConfigurator({
         {calendlyBooked ? (
           <div className="mt-5 flex items-center gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/[0.07] px-4 py-4">
             <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs text-emerald-700"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs text-emerald-700 dark:text-emerald-400"
             >
               ✓
             </span>
-            <p className="text-sm text-emerald-700">{t("calendlyBooked")}</p>
+            <p className="text-sm text-emerald-700 dark:text-emerald-400">{t("calendlyBooked")}</p>
           </div>
         ) : (
           <div className="mt-5">
@@ -296,7 +296,7 @@ export function ProductConfigurator({
               />
               {calendlySlot}
               {product.description?.trim() ? (
-                <div className="border-t border-black/10 pt-8">
+                <div className="border-t border-black/10 dark:border-white/10 pt-8">
                   <ProductDescription html={product.description} />
                 </div>
               ) : null}
@@ -364,7 +364,7 @@ export function ProductConfigurator({
     </section>
 
       {isCustomUpload ? (
-        <section id="customizer-section" className="scroll-mt-28 bg-black/[0.02] py-16 md:py-20">
+        <section id="customizer-section" className="scroll-mt-28 bg-black/[0.02] dark:bg-white/[0.02] py-16 md:py-20">
           <div className="mx-auto max-w-6xl px-4 md:px-6">
             <DesignPicker
               fulfillment={fulfillment}
@@ -408,7 +408,7 @@ function ProductPageTrust({ tinted = false }: { tinted?: boolean }) {
   const t = useTranslations("Product");
 
   return (
-    <section className={`py-16 md:py-20 ${tinted ? "bg-black/[0.02]" : "bg-background"}`}>
+    <section className={`py-16 md:py-20 ${tinted ? "bg-black/[0.02] dark:bg-white/[0.02]" : "bg-background"}`}>
       <div className="mx-auto max-w-6xl px-4 md:px-6">
       <div className="grid gap-10 md:grid-cols-2">
         <div>

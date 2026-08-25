@@ -25,7 +25,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
   const hint = mode === "own" ? t("visorSelectHintOwn") : t("visorSelectHint");
 
   return (
-    <div className="border-t border-black/10 pt-8">
+    <div className="border-t border-black/10 pt-8 dark:border-white/10">
       <label htmlFor="visor-select" className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
         {label}
       </label>
@@ -37,23 +37,23 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
         required
         value={value ?? ""}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-4 w-full cursor-pointer appearance-none rounded-lg border border-black/15 bg-black/[0.02] px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+        className="mt-4 w-full cursor-pointer appearance-none rounded-lg border border-black/15 bg-black/[0.02] px-4 py-3 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent dark:border-white/15 dark:bg-white/[0.02]"
       >
-        <option value="" disabled className="bg-white text-muted">
+        <option value="" disabled className="bg-white text-muted dark:bg-black">
           {t("visorSelectPlaceholder")}
         </option>
-        <optgroup label={t("visorSelectPopular")} className="bg-white">
+        <optgroup label={t("visorSelectPopular")} className="bg-white dark:bg-black">
           {popular.map((v) => (
-            <option key={v.id} value={v.id} className="bg-white">
+            <option key={v.id} value={v.id} className="bg-white dark:bg-black">
               {visorDisplayLabel(v)}
               {mode === "supply" ? ` · ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
             </option>
           ))}
         </optgroup>
         {groups.map(({ brand, items }) => (
-          <optgroup key={brand} label={brand} className="bg-white">
+          <optgroup key={brand} label={brand} className="bg-white dark:bg-black">
             {items.map((v) => (
-              <option key={v.id} value={v.id} className="bg-white">
+              <option key={v.id} value={v.id} className="bg-white dark:bg-black">
                 {visorDisplayLabel(v)}
                 {mode === "supply" ? ` · ${formatMoney(String(v.priceEUR), "EUR")}` : ""}
               </option>
@@ -76,7 +76,7 @@ export function VisorSelectField({ value, onChange, mode = "supply", disclaimer 
 
       {disclaimer && selected ? (
         <p
-          className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800"
+          className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
           role="note"
         >
           {disclaimer}

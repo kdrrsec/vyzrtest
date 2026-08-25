@@ -63,7 +63,7 @@ export function HeaderSearchPanel() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/30 px-4 pt-[max(4rem,10vh)] backdrop-blur-sm md:pt-[12vh]">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center bg-black/30 px-4 pt-[max(4rem,10vh)] backdrop-blur-sm dark:bg-black/60 md:pt-[12vh]">
       <button
         type="button"
         className="absolute inset-0"
@@ -71,12 +71,12 @@ export function HeaderSearchPanel() {
         onClick={() => setOpen(false)}
       />
       <div
-        className="relative w-full max-w-xl rounded-2xl border border-black/10 bg-white shadow-2xl"
+        className="relative w-full max-w-xl rounded-2xl border border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-black"
         role="dialog"
         aria-modal="true"
         aria-label={t("dialogLabel")}
       >
-        <div className="flex items-center gap-3 border-b border-black/10 px-4 py-3">
+        <div className="flex items-center gap-3 border-b border-black/10 px-4 py-3 dark:border-white/10">
           <SearchGlyph className="h-5 w-5 shrink-0 text-muted" />
           <input
             id="header-search-input"
@@ -89,7 +89,7 @@ export function HeaderSearchPanel() {
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="rounded-full p-2 text-muted hover:bg-black/5 hover:text-foreground"
+            className="rounded-full p-2 text-muted hover:bg-black/5 hover:text-foreground dark:hover:bg-white/10"
             aria-label={tNav("close")}
           >
             <CloseGlyph className="h-5 w-5" />
@@ -109,9 +109,9 @@ export function HeaderSearchPanel() {
                   <Link
                     href={PATHS.product(p.handle)}
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-black/[0.04]"
+                    className="flex items-center gap-3 rounded-xl px-2 py-2 transition hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
                   >
-                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-black/[0.04]">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-black/[0.04] dark:bg-white/[0.06]">
                       <Image
                         src={p.featuredImage?.url?.trim() || PLACEHOLDER.thumb}
                         alt={p.featuredImage?.altText?.trim() || p.title}

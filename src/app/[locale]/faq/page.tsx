@@ -29,7 +29,7 @@ export default async function FaqPage({ params }: Props) {
       <p className="mt-4 text-sm text-muted">{t("intro")}</p>
       <div className="mt-12 space-y-10">
         {FAQ_IDS.map((n) => (
-          <div key={n} className="border-b border-black/10 pb-10">
+          <div key={n} className="border-b border-black/10 pb-10 dark:border-white/10">
             <h2 className="text-lg font-medium text-foreground">{t(`q${n}`)}</h2>
             <p className="mt-3 whitespace-pre-line text-sm text-muted">{t(`a${n}`)}</p>
           </div>

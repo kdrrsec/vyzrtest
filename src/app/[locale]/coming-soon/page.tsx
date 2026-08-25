@@ -31,7 +31,7 @@ export default async function ComingSoonPage({ params }: Props) {
         <NewsletterSignup />
       </div>
 
-      <div className="mt-14 flex flex-wrap justify-center gap-4 border-t border-black/10 pt-14 text-sm">
+      <div className="mt-14 flex flex-wrap justify-center gap-4 border-t border-black/10 pt-14 text-sm dark:border-white/10">
         <Link href={PATHS.home} className="text-muted underline-offset-4 transition hover:text-foreground hover:underline">
           {t("backHome")}
         </Link>

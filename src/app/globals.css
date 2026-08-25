@@ -3,18 +3,29 @@
 @tailwind utilities;
 
 :root {
+  --vyzr-background: #fafafa;
+  --vyzr-foreground: #0a0a0a;
+  --vyzr-accent: #e01e1e;
+  --vyzr-muted: rgba(10, 10, 10, 0.65);
   color-scheme: light;
+}
+
+.dark {
+  --vyzr-background: #000000;
+  --vyzr-foreground: #ffffff;
+  --vyzr-accent: #ff2d2d;
+  --vyzr-muted: rgba(255, 255, 255, 0.78);
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #fafafa;
+  background-color: var(--vyzr-background);
 }
 
 body {
   @apply bg-background text-foreground antialiased;
-  background-color: #fafafa;
-  color: #0a0a0a;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
 }
 
 ::selection {
@@ -29,6 +40,11 @@ body {
   background-color: color-mix(in srgb, rgb(224, 30, 30) 10%, rgb(255, 255, 255));
 }
 
+.dark .site-announce-bar {
+  border-bottom: 1px solid rgba(255, 45, 45, 0.25);
+  background-color: color-mix(in srgb, rgb(255, 45, 45) 12%, rgb(0, 0, 0));
+}
+
 .site-announce-text {
   margin: 0;
   text-align: center;
@@ -39,6 +55,10 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: #0a0a0a;
+}
+
+.dark .site-announce-text {
+  color: #ffffff;
 }
 
 .site-announce-text--slide {
@@ -92,6 +112,14 @@ body {
   color: #0a0a0a;
 }
 
+.dark .site-nav-link.is-inactive {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.dark .site-nav-link.is-inactive:hover {
+  color: #ffffff;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-nav-link {
     transition: color 200ms ease-out;
@@ -106,8 +134,9 @@ body {
   .btn-accent {
     @apply cursor-pointer rounded-full bg-accent text-white transition duration-200 ease-out;
     @apply hover:scale-[1.04] hover:brightness-110 hover:shadow-[0_0_20px_rgba(224,30,30,0.35)];
+    @apply dark:hover:shadow-[0_0_28px_rgba(255,45,45,0.55)];
     @apply active:scale-[0.98] active:brightness-95;
-    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:focus-visible:outline-white;
   }
 }
 
@@ -117,4 +146,11 @@ textarea:-webkit-autofill {
   caret-color: #0a0a0a;
   transition: background-color 9999s ease-out 0s;
   box-shadow: 0 0 0 1000px #ffffff inset;
+}
+
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff;
+  caret-color: #ffffff;
+  box-shadow: 0 0 0 1000px #000000 inset;
 }

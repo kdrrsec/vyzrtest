@@ -60,7 +60,7 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
             {/* Primary action for this section: see the full range of designs */}
             <Link
               href={PATHS.shopVisors}
-              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/15 bg-white/60 px-6 py-3 text-center text-sm font-semibold tracking-wide text-foreground transition hover:border-accent/60 hover:text-accent"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-black/15 bg-white/60 px-6 py-3 text-center text-sm font-semibold tracking-wide text-foreground transition hover:border-accent/60 hover:text-accent dark:border-white/15 dark:bg-white/10"
             >
               {t("cta")}
             </Link>
@@ -90,7 +90,7 @@ export async function FeaturedDesigns({ products }: { products: Item[] }) {
               <Link
                 key={`${p.handle}-${index}`}
                 href={`${PATHS.product(p.handle)}#product-viewer`}
-                className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)]"
+                className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)] dark:border-white/[0.08] dark:bg-white/[0.02]"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-background">

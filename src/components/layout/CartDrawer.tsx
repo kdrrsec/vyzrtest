@@ -78,16 +78,16 @@ export function CartDrawer() {
       <button
         type="button"
         aria-label={t("closeCart")}
-        className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"
+        className="absolute inset-0 bg-black/30 backdrop-blur-[2px] dark:bg-black/60"
         onClick={() => setOpen(false)}
       />
       <aside
-        className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-black/10 bg-white shadow-2xl"
+        className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-black/10 bg-white shadow-2xl dark:border-white/10 dark:bg-black"
         role="dialog"
         aria-modal="true"
         aria-labelledby="cart-drawer-title"
       >
-        <div className="flex items-center justify-between gap-3 border-b border-black/10 px-5 py-4">
+        <div className="flex items-center justify-between gap-3 border-b border-black/10 dark:border-white/10 px-5 py-4">
           <h2
             id="cart-drawer-title"
             className="font-mono text-xs uppercase tracking-[0.25em] text-foreground"
@@ -113,7 +113,7 @@ export function CartDrawer() {
                     .catch(() => setClearError(t("clearError")))
                     .finally(() => setClearing(false));
                 }}
-                className="rounded-full px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-muted transition hover:bg-black/5 hover:text-accent disabled:opacity-40"
+                className="rounded-full px-3 py-2 font-mono text-[10px] uppercase tracking-wider text-muted transition hover:bg-black/5 dark:hover:bg-white/10 hover:text-accent disabled:opacity-40"
               >
                 {clearing ? t("clearing") : t("clear")}
               </button>
@@ -121,7 +121,7 @@ export function CartDrawer() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="rounded-full p-2 text-muted transition hover:bg-black/5 hover:text-foreground"
+              className="rounded-full p-2 text-muted transition hover:bg-black/5 dark:hover:bg-white/10 hover:text-foreground"
               aria-label={tNav("close")}
             >
               <CloseIcon className="h-5 w-5" />
@@ -151,7 +151,7 @@ export function CartDrawer() {
               <Link
                 href={PATHS.shopVisors}
                 onClick={() => setOpen(false)}
-                className="mt-8 inline-flex rounded-full border border-black/15 px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:border-accent"
+                className="mt-8 inline-flex rounded-full border border-black/15 dark:border-white/15 px-8 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:border-accent"
               >
                 {t("continue")}
               </Link>
@@ -159,11 +159,11 @@ export function CartDrawer() {
           ) : (
             <ul className="space-y-6">
               {lines.map((line) => (
-                <li key={line.id} className="flex gap-4 border-b border-black/10 pb-6">
+                <li key={line.id} className="flex gap-4 border-b border-black/10 dark:border-white/10 pb-6">
                   <Link
                     href={PATHS.product(line.handle)}
                     onClick={() => setOpen(false)}
-                    className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-black/[0.04]"
+                    className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-black/[0.04] dark:bg-white/[0.06]"
                   >
                     <Image
                       src={line.image?.url?.trim() || PLACEHOLDER.thumb}
@@ -184,7 +184,7 @@ export function CartDrawer() {
                     <CartLineDetails line={line} variantFallback={t("variantFallback")} />
                     <div className="mt-2 flex flex-wrap items-center gap-2 font-mono text-xs text-foreground/80">
                       <span className="text-muted">{t("qty")}</span>
-                      <div className="inline-flex items-stretch rounded-full border border-black/15">
+                      <div className="inline-flex items-stretch rounded-full border border-black/15 dark:border-white/15">
                         <button
                           type="button"
                           aria-label={t("decreaseQty")}
@@ -205,11 +205,11 @@ export function CartDrawer() {
                               )
                               .finally(() => setQtyLineBusy(null));
                           }}
-                          className="px-2.5 py-1 text-sm leading-none text-foreground transition hover:bg-black/5 disabled:opacity-40"
+                          className="px-2.5 py-1 text-sm leading-none text-foreground transition hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-40"
                         >
                           −
                         </button>
-                        <span className="flex min-w-[2rem] items-center justify-center border-x border-black/15 px-1 tabular-nums">
+                        <span className="flex min-w-[2rem] items-center justify-center border-x border-black/15 dark:border-white/15 px-1 tabular-nums">
                           {line.quantity}
                         </span>
                         <button
@@ -232,7 +232,7 @@ export function CartDrawer() {
                               )
                               .finally(() => setQtyLineBusy(null));
                           }}
-                          className="px-2.5 py-1 text-sm leading-none text-foreground transition hover:bg-black/5 disabled:opacity-40"
+                          className="px-2.5 py-1 text-sm leading-none text-foreground transition hover:bg-black/5 dark:hover:bg-white/10 disabled:opacity-40"
                         >
                           +
                         </button>
@@ -250,7 +250,7 @@ export function CartDrawer() {
         </div>
 
         {!empty && checkoutUrl && !loading && reason !== "no_shopify" ? (
-          <div className="border-t border-black/10 bg-white/95 px-5 py-5">
+          <div className="border-t border-black/10 dark:border-white/10 bg-white/95 dark:bg-black/95 px-5 py-5">
             <a
               href={checkoutUrl}
               className="btn-accent flex w-full items-center justify-center py-4 text-center text-xs font-semibold uppercase tracking-[0.2em]"

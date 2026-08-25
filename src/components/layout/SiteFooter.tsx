@@ -8,7 +8,7 @@ export async function SiteFooter() {
   const tNav = await getTranslations("Nav");
 
   return (
-    <footer className="mt-24 border-t border-black/[0.08]">
+    <footer className="mt-24 border-t border-black/[0.08] dark:border-white/[0.08]">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 md:flex-row md:items-start md:justify-between md:px-6">
         <div>
           <Link
@@ -21,7 +21,7 @@ export async function SiteFooter() {
             <img
               src={LOGO_SRC}
               alt="VYZR"
-              className="h-12 w-auto max-w-[16rem] object-contain object-left brightness-0 sm:h-14 md:h-16"
+              className="h-12 w-auto max-w-[16rem] object-contain object-left brightness-0 dark:brightness-100 sm:h-14 md:h-16"
             />
           </Link>
           <p className="mt-3 max-w-sm text-sm text-muted">{t("tagline")}</p>
@@ -50,7 +50,7 @@ export async function SiteFooter() {
           </Link>
         </div>
       </div>
-      <div className="border-t border-black/[0.07] py-6 text-center text-xs text-muted">
+      <div className="border-t border-black/[0.07] py-6 text-center text-xs text-muted dark:border-white/[0.07]">
         {t("copyright", { year: new Date().getFullYear() })}
       </div>
     </footer>

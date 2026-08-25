@@ -29,7 +29,7 @@ export function NewsletterSignup() {
 
   if (state.success) {
     return (
-      <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] px-8 py-14 backdrop-blur-sm">
+      <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] dark:border-white/10 dark:bg-white/[0.02] px-8 py-14 backdrop-blur-sm">
         <p className="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
           {t("thanksTitle")}
         </p>
@@ -39,7 +39,7 @@ export function NewsletterSignup() {
   }
 
   return (
-    <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] px-8 py-10 backdrop-blur-sm md:px-10 md:py-12">
+    <div className="w-full rounded-2xl border border-black/10 bg-black/[0.02] dark:border-white/10 dark:bg-white/[0.02] px-8 py-10 backdrop-blur-sm md:px-10 md:py-12">
       <h2 className="text-center text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
         {t("formTitle")}
       </h2>
@@ -63,7 +63,7 @@ export function NewsletterSignup() {
             type="checkbox"
             value="true"
             required
-            className="mt-1 h-4 w-4 shrink-0 rounded border-black/25 bg-white accent-accent"
+            className="mt-1 h-4 w-4 shrink-0 rounded border-black/25 bg-white accent-accent dark:border-white/25 dark:bg-black"
           />
           <span>{t("consent")}</span>
         </label>
@@ -96,7 +96,7 @@ function FieldGroup({
   children: ReactNode;
 }) {
   return (
-    <div className="relative border border-black/15 bg-black/[0.015] px-3 pb-2 pt-7 transition-colors focus-within:border-accent/55">
+    <div className="relative border border-black/15 bg-black/[0.015] px-3 pb-2 pt-7 transition-colors focus-within:border-accent/55 dark:border-white/15 dark:bg-white/[0.02]">
       <label
         htmlFor={htmlFor}
         className="absolute left-3 top-2 cursor-text font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground"

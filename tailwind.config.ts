@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   safelist: [
     "font-mono",
@@ -16,10 +17,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#FAFAFA",
-        foreground: "#0A0A0A",
-        accent: "#E01E1E",
-        muted: "rgba(10, 10, 10, 0.65)",
+        background: "var(--vyzr-background)",
+        foreground: "var(--vyzr-foreground)",
+        accent: "var(--vyzr-accent)",
+        muted: "var(--vyzr-muted)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],

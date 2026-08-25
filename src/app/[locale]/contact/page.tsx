@@ -28,7 +28,7 @@ export default async function ContactPage({ params }: Props) {
         <ContactForm />
       </div>
 
-      <div className="mt-14 border-t border-black/10 pt-14">
+      <div className="mt-14 border-t border-black/10 pt-14 dark:border-white/10">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
           {t("detailsTitle")}
         </h2>
@@ -36,7 +36,7 @@ export default async function ContactPage({ params }: Props) {
         <div className="mt-8">
           <Link
             href={PATHS.faq}
-            className="inline-flex rounded-full border border-black/15 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:border-accent"
+            className="inline-flex rounded-full border border-black/15 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition hover:border-accent dark:border-white/15"
           >
             {t("openProduct")}
           </Link>

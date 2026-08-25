@@ -17,7 +17,9 @@
     "closeMenu": "Close menu",
     "search": "Search",
     "cart": "Cart",
-    "close": "Close"
+    "close": "Close",
+    "switchToDark": "Switch to dark theme",
+    "switchToLight": "Switch to light theme"
   },
   "LocaleSwitcher": {
     "label": "Language",

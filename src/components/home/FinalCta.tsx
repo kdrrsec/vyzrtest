@@ -6,7 +6,7 @@ export async function FinalCta() {
   const t = await getTranslations("FinalCta");
 
   return (
-    <section className="bg-black/[0.02] py-16">
+    <section className="bg-black/[0.02] py-16 dark:bg-white/[0.02]">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         {/* Short brand hook, kept brief so the section reads as a lead-in to the CTA, not a content page */}
         <div className="mx-auto max-w-2xl text-center">

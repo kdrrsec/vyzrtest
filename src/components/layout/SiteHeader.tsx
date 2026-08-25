@@ -11,6 +11,7 @@ import { useSiteChromeStore } from "@/store/useSiteChromeStore";
 import { AnnouncementRotator } from "./AnnouncementRotator";
 import { CartDrawer } from "./CartDrawer";
 import { HeaderSearchPanel } from "./HeaderSearchPanel";
+import { ThemeToggle } from "./ThemeToggle";
 
 const currencyLabel =
   typeof process.env.NEXT_PUBLIC_STORE_CURRENCY_LABEL === "string"
@@ -86,7 +87,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-50 overflow-visible border-b border-black/10 bg-white/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 overflow-visible border-b border-black/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90">
         <div className="mx-auto flex h-[50px] max-h-[50px] min-h-[50px] max-w-7xl items-center justify-between gap-3 overflow-visible px-4 md:px-6">
           <div className="flex min-w-0 items-center gap-3 lg:gap-8">
             <button
@@ -102,7 +103,7 @@ export function SiteHeader() {
 
             <Link
               href={PATHS.home}
-              className="relative z-10 flex h-[50px] shrink-0 -translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)] translate-y-1 items-center overflow-visible"
+              className="relative z-10 flex h-[50px] shrink-0 translate-y-1 items-center overflow-visible lg:-translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)]"
               aria-label={tNav("home")}
             >
               <HeaderLogo src={LOGO_SRC} />
@@ -127,6 +128,8 @@ export function SiteHeader() {
             <span className="hidden px-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted lg:inline">
               {currencyLabel}
             </span>
+
+            <ThemeToggle className="hidden sm:inline-flex" />
 
             <button
               type="button"
@@ -156,13 +159,19 @@ export function SiteHeader() {
         </div>
 
         {mobileOpen ? (
-          <div id="mobile-nav" className="border-t border-black/10 bg-white lg:hidden">
+          <div id="mobile-nav" className="border-t border-black/10 bg-white dark:border-white/10 dark:bg-black lg:hidden">
             <nav className="flex flex-col px-4 py-4" aria-label="Mobile primary">
+              <div className="flex items-center justify-between border-b border-black/10 py-3 dark:border-white/10 sm:hidden">
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                  {currencyLabel}
+                </span>
+                <ThemeToggle />
+              </div>
               {NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`border-b border-black/10 py-3 text-sm font-medium uppercase tracking-widest transition hover:text-accent ${
+                  className={`border-b border-black/10 py-3 text-sm font-medium uppercase tracking-widest transition hover:text-accent dark:border-white/10 ${
                     isNavActive(pathname, item.href)
                       ? "text-accent"
                       : "text-foreground"
@@ -200,14 +209,14 @@ function HeaderLogo({ src }: { src: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element -- /public asset; svg/png from designer
     // NOTE: source asset is a white wordmark with transparent bg (designed for the old black
-    // theme). `brightness-0` recolors the opaque pixels to solid black so it reads on the new
-    // light background. This also flattens the small red accent tip to black.
+    // theme). `brightness-0` recolors the opaque pixels to solid black so it reads on the light
+    // background; in dark mode the filter is dropped so the wordmark shows in its native white.
     // TODO: ask the designer for a proper dark-on-light (and ideally still red-accented) logo
     // export; swap this filter out once that asset exists.
     <img
       src={src}
       alt="VYZR"
-      className="h-[128px] w-auto max-w-[min(100vw-5rem,720px)] shrink-0 object-contain object-left brightness-0 md:h-[140px]"
+      className="h-[128px] w-auto max-w-[min(100vw-5rem,720px)] shrink-0 object-contain object-left brightness-0 dark:brightness-100 md:h-[140px]"
       onError={() => setBroken(true)}
     />
   );

@@ -15,7 +15,7 @@ export function StandardVariantPicker({ groups, selections, onSelect }: Props) {
   if (!groups.length) return null;
 
   return (
-    <div className="space-y-8 border-t border-black/10 pt-8">
+    <div className="space-y-8 border-t border-black/10 pt-8 dark:border-white/10">
       {groups.map((group) => (
         <div key={group.name}>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
@@ -34,7 +34,7 @@ export function StandardVariantPicker({ groups, selections, onSelect }: Props) {
                     className={
                       selected
                         ? "w-full rounded-lg border border-foreground bg-foreground px-4 py-3.5 text-left text-sm font-semibold uppercase tracking-wide text-background transition"
-                        : "w-full rounded-lg border border-black/20 bg-transparent px-4 py-3.5 text-left text-sm font-medium uppercase tracking-wide text-foreground transition hover:border-black/35"
+                        : "w-full rounded-lg border border-black/20 bg-transparent px-4 py-3.5 text-left text-sm font-medium uppercase tracking-wide text-foreground transition hover:border-black/35 dark:border-white/20 dark:hover:border-white/35"
                     }
                   >
                     {value}

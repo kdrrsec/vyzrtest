@@ -62,6 +62,15 @@ export default async function LocaleLayout({ children, params }: Props) {
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        <script
+          // Runs before paint so the stored theme choice never flashes light-then-dark (or vice versa).
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('vyzr-theme')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}",
+          }}
+        />
+      </head>
       <body className="min-h-dvh bg-background font-sans text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SiteHeader />

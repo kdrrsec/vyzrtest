@@ -81,7 +81,7 @@ function useVisorGlbAvailable(requestGlb: boolean) {
 function ViewerLoading() {
   const t = useTranslations("Viewer");
   return (
-    <div className="flex h-full min-h-[420px] items-center justify-center bg-black/[0.03] text-sm text-muted">
+    <div className="flex h-full min-h-[420px] items-center justify-center bg-black/[0.03] text-sm text-muted dark:bg-white/[0.03]">
       {t("loading")}
     </div>
   );
@@ -152,7 +152,7 @@ export function VisorViewer({
   return (
     <div
       id="product-viewer"
-      className="relative isolate h-[420px] w-full scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white bg-gradient-to-b from-black/[0.03] to-transparent shadow-sm [contain:layout_paint]"
+      className="relative isolate h-[420px] w-full scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white bg-gradient-to-b from-black/[0.03] to-transparent shadow-sm dark:border-white/10 dark:bg-black dark:from-white/[0.03] [contain:layout_paint]"
       style={{ minHeight: VIEWER_H }}
     >
       <WebGLGate
@@ -160,12 +160,12 @@ export function VisorViewer({
         fallback={
           <div className="flex h-full min-h-[420px] w-full flex-col">
             <p
-              className="shrink-0 border-b border-black/10 bg-white/90 px-3 py-2 text-center text-[10px] leading-snug text-muted"
+              className="shrink-0 border-b border-black/10 bg-white/90 px-3 py-2 text-center text-[10px] leading-snug text-muted dark:border-white/10 dark:bg-black/90"
               role="status"
             >
               {t("webglUnavailableTitle")}
-              <span className="text-black/40"> · </span>
-              <span className="text-black/55">{t("webglUnavailableHint")}</span>
+              <span className="text-black/40 dark:text-white/40"> · </span>
+              <span className="text-black/55 dark:text-white/55">{t("webglUnavailableHint")}</span>
             </p>
             <div className="relative min-h-0 flex-1">{flatPreview}</div>
           </div>

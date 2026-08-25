@@ -52,7 +52,7 @@ function SlotSection({
   const t = useTranslations("Customizer");
   const inputId = `visor-upload-${slot}`;
   return (
-    <section className="rounded-2xl border border-black/10 bg-black/[0.015] p-6 md:p-8">
+    <section className="rounded-2xl border border-black/10 bg-black/[0.015] p-6 dark:border-white/10 dark:bg-white/[0.02] md:p-8">
       <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground">
         {title}
       </h3>
@@ -74,7 +74,7 @@ function SlotSection({
           />
         </label>
         {value ? (
-          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-black/10 bg-black/5">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5">
             {/* eslint-disable-next-line @next/next/no-img-element -- data URL from customer */}
             <img src={value} alt="" className="h-full w-full object-contain" />
           </div>
@@ -83,12 +83,12 @@ function SlotSection({
       {value ? (
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
           <p
-            className="flex items-center gap-2 text-sm font-medium text-emerald-700"
+            className="flex items-center gap-2 text-sm font-medium text-emerald-700 dark:text-emerald-400"
             role="status"
             aria-live="polite"
           >
             <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs leading-none text-emerald-700"
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs leading-none text-emerald-700 dark:text-emerald-400"
               aria-hidden
             >
               ✓
@@ -153,7 +153,7 @@ export function DesignPicker({
     id === "left" ? t("slotLeftHint") : id === "right" ? t("slotRightHint") : t("slotTopHint");
 
   return (
-    <div className="space-y-14 border-t border-black/10 pt-14">
+    <div className="space-y-14 border-t border-black/10 pt-14 dark:border-white/10">
       <header>
         <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{t("kicker")}</p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">{t("title")}</h2>
@@ -180,21 +180,21 @@ export function DesignPicker({
                 className={`group relative flex flex-col rounded-2xl border px-5 py-6 text-left transition-all duration-200 md:min-h-[9.5rem] ${
                   active
                     ? "border-accent bg-accent/[0.08] shadow-[0_0_0_1px_rgba(224,30,30,0.35),0_4px_24px_-4px_rgba(224,30,30,0.15)]"
-                    : "border-black/15 bg-black/[0.02] hover:border-black/25 hover:bg-black/[0.04] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] cursor-pointer"
+                    : "border-black/15 bg-black/[0.02] hover:border-black/25 hover:bg-black/[0.04] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] cursor-pointer dark:border-white/15 dark:bg-white/[0.02] dark:hover:border-white/25 dark:hover:bg-white/[0.04]"
                 }`}
               >
                 <span
                   className={`absolute right-3 top-3 flex h-4 w-4 items-center justify-center rounded-full border transition-all duration-200 ${
                     active
                       ? "border-accent bg-accent shadow-[0_0_8px_rgba(224,30,30,0.4)]"
-                      : "border-black/20 group-hover:border-black/35"
+                      : "border-black/20 group-hover:border-black/35 dark:border-white/20 dark:group-hover:border-white/35"
                   }`}
                 >
                   {active ? <span className="block h-1.5 w-1.5 rounded-full bg-white" /> : null}
                 </span>
 
                 {popular ? (
-                  <span className="absolute top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-accent/25 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/90 shadow-[0_0_0_1px_rgba(224,30,30,0.08),0_0_12px_-2px_rgba(224,30,30,0.15)] backdrop-blur-[2px]">
+                  <span className="absolute top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-accent/25 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/90 shadow-[0_0_0_1px_rgba(224,30,30,0.08),0_0_12px_-2px_rgba(224,30,30,0.15)] backdrop-blur-[2px] dark:bg-black">
                     {t("badgePopular")}
                   </span>
                 ) : null}
@@ -228,12 +228,12 @@ export function DesignPicker({
                   className={`group relative flex items-center justify-center gap-2.5 rounded-xl border px-4 py-3.5 text-sm font-medium transition-all duration-200 ${
                     active
                       ? "border-accent bg-accent/[0.08] text-foreground shadow-[0_0_0_1px_rgba(224,30,30,0.35)]"
-                      : "border-black/15 bg-black/[0.02] text-foreground/60 hover:border-black/25 hover:bg-black/[0.04] hover:text-foreground cursor-pointer"
+                      : "border-black/15 bg-black/[0.02] text-foreground/60 hover:border-black/25 hover:bg-black/[0.04] hover:text-foreground cursor-pointer dark:border-white/15 dark:bg-white/[0.02] dark:hover:border-white/25 dark:hover:bg-white/[0.04]"
                   }`}
                 >
                   <span
                     className={`flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border transition-all ${
-                      active ? "border-accent bg-accent" : "border-black/25 group-hover:border-black/40"
+                      active ? "border-accent bg-accent" : "border-black/25 group-hover:border-black/40 dark:border-white/25 dark:group-hover:border-white/40"
                     }`}
                   >
                     {active ? <span className="block h-1 w-1 rounded-full bg-white" /> : null}
@@ -256,7 +256,7 @@ export function DesignPicker({
           <p className="max-w-2xl text-sm text-muted">{t("step2Lead")}</p>
           {!designUploadConfigured ? (
             <p
-              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800"
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
               role="note"
             >
               {tp("uploadNotConfigured")}
@@ -300,7 +300,7 @@ export function DesignPicker({
 
       {/* Step 3 — checkout */}
       {setup ? (
-        <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 md:px-8 md:py-7">
+        <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 dark:border-white/10 dark:bg-white/[0.03] md:px-8 md:py-7">
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

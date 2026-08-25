@@ -116,7 +116,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
         <button
           type="button"
           onClick={() => setFilterOpen((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md border border-black/25 bg-transparent px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-foreground transition hover:border-black/45"
+          className="inline-flex items-center gap-2 rounded-md border border-black/25 bg-transparent px-3.5 py-2 text-xs font-medium uppercase tracking-[0.12em] text-foreground transition hover:border-black/45 dark:border-white/25 dark:hover:border-white/45"
           aria-expanded={filterOpen}
         >
           <FilterIcon className="opacity-90" />
@@ -137,7 +137,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
 
       {filterOpen ? (
         <div
-          className="mt-5 rounded-2xl border border-black/10 bg-white p-5 shadow-sm backdrop-blur-sm md:p-6"
+          className="mt-5 rounded-2xl border border-black/10 bg-white p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-black md:p-6"
           role="region"
           aria-label={t("Shop.filterPanelAria")}
         >
@@ -151,7 +151,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t("Shop.searchPlaceholder")}
-                className="mt-2 w-full rounded-xl border border-black/15 bg-black/[0.02] px-4 py-2.5 text-sm text-foreground placeholder:text-muted/70 focus:border-accent/60 focus:outline-none"
+                className="mt-2 w-full rounded-xl border border-black/15 bg-black/[0.02] dark:border-white/15 dark:bg-white/[0.02] px-4 py-2.5 text-sm text-foreground placeholder:text-muted/70 focus:border-accent/60 focus:outline-none"
                 autoComplete="off"
               />
             </label>
@@ -163,7 +163,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
-                className="mt-2 w-full cursor-pointer rounded-xl border border-black/15 bg-black/[0.02] px-4 py-2.5 text-sm text-foreground focus:border-accent/60 focus:outline-none"
+                className="mt-2 w-full cursor-pointer rounded-xl border border-black/15 bg-black/[0.02] dark:border-white/15 dark:bg-white/[0.02] px-4 py-2.5 text-sm text-foreground focus:border-accent/60 focus:outline-none"
               >
                 <option value="newest">{t("Shop.sortNewest")}</option>
                 <option value="price-asc">{t("Shop.sortPriceLow")}</option>
@@ -190,7 +190,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
                       className={
                         on
                           ? "rounded-full border border-accent bg-accent/10 px-3 py-1.5 text-xs text-foreground"
-                          : "rounded-full border border-black/15 bg-black/[0.03] px-3 py-1.5 text-xs text-muted transition hover:border-black/30 hover:text-foreground"
+                          : "rounded-full border border-black/15 bg-black/[0.03] px-3 py-1.5 text-xs text-muted transition hover:border-black/30 hover:text-foreground dark:border-white/15 dark:bg-white/[0.03] dark:hover:border-white/30"
                       }
                     >
                       {tag}
@@ -202,7 +202,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
           ) : null}
 
           {filtersActive ? (
-            <div className="mt-6 flex justify-end border-t border-black/10 pt-4">
+            <div className="mt-6 flex justify-end border-t border-black/10 pt-4 dark:border-white/10">
               <button
                 type="button"
                 onClick={clearFilters}
@@ -239,7 +239,7 @@ export function VisorShopShowcaseClient({ products, locale }: Props) {
               >
                 <Link
                   href={`${PATHS.product(p.handle)}#product-viewer`}
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)]"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] transition-all duration-300 hover:border-accent/50 hover:shadow-[0_8px_32px_-8px_rgba(224,30,30,0.18)] dark:border-white/[0.08] dark:bg-white/[0.02]"
                 >
                   {/* Vierkante thumb: contain = hele product zichtbaar; lichte padding i.p.v. zware zoom/crop. */}
                   <div className="relative aspect-square w-full overflow-hidden bg-background">

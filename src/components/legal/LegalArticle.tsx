@@ -3,7 +3,7 @@ import { getLegalBlocks, type LegalBlock } from "@/lib/legal-document";
 function LegalBlock({ block: b }: { block: LegalBlock }) {
   switch (b.t) {
     case "hr":
-      return <hr className="my-10 border-black/10" />;
+      return <hr className="my-10 border-black/10 dark:border-white/10" />;
     case "h1":
       return (
         <h1 className="text-xl font-semibold leading-snug tracking-tight text-foreground md:text-2xl">

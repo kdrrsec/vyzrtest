@@ -23,7 +23,7 @@ export default function ProductError({
       <button
         type="button"
         onClick={reset}
-        className="mt-8 rounded-full border border-black/15 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-foreground hover:border-accent"
+        className="mt-8 rounded-full border border-black/15 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-foreground hover:border-accent dark:border-white/15"
       >
         {t("retry")}
       </button>

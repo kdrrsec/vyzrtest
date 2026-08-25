@@ -78,7 +78,7 @@ export async function Hero() {
                   </Link>
                   <Link
                     href={PATHS.shopVisors}
-                    className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-8 py-4 text-sm font-semibold tracking-wide text-foreground backdrop-blur-sm transition hover:border-accent/60 hover:text-accent"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-8 py-4 text-sm font-semibold tracking-wide text-foreground backdrop-blur-sm transition hover:border-accent/60 hover:text-accent dark:border-white/15 dark:bg-white/10"
                   >
                     {t("heroCtaShop")}
                   </Link>

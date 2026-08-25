@@ -15,9 +15,9 @@ export function ProductHeroImage({ product }: { product: ShopifyProduct }) {
   return (
     <div
       id="product-viewer"
-      className="relative isolate h-[420px] w-full min-h-[420px] scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white p-3 shadow-sm"
+      className="relative isolate h-[420px] w-full min-h-[420px] scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-black"
     >
-      <div className="relative h-full w-full overflow-hidden rounded-xl bg-black/[0.04] ring-1 ring-inset ring-black/10">
+      <div className="relative h-full w-full overflow-hidden rounded-xl bg-black/[0.04] ring-1 ring-inset ring-black/10 dark:bg-white/[0.06] dark:ring-white/10">
         {spin ? (
           <ProductSpinViewer frames={spin} alt={alt} />
         ) : (

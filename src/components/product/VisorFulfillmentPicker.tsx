@@ -28,7 +28,7 @@ export function VisorFulfillmentPicker({ value, onChange }: Props) {
   const t = useTranslations("Product");
 
   return (
-    <div className="border-t border-black/10 pt-8">
+    <div className="border-t border-black/10 pt-8 dark:border-white/10">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
         {t("fulfillmentLabel")}
       </p>
@@ -46,7 +46,7 @@ export function VisorFulfillmentPicker({ value, onChange }: Props) {
               className={`group relative flex flex-col items-start rounded-2xl border px-4 py-5 text-left transition-all duration-200 ${
                 active
                   ? "border-accent bg-accent/[0.08] shadow-[0_0_0_1px_rgba(224,30,30,0.35),0_4px_24px_-4px_rgba(224,30,30,0.15)]"
-                  : "border-black/15 bg-black/[0.02] hover:border-black/25 hover:bg-black/[0.04] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] cursor-pointer"
+                  : "border-black/15 bg-black/[0.02] hover:border-black/25 hover:bg-black/[0.04] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)] cursor-pointer dark:border-white/15 dark:bg-white/[0.02] dark:hover:border-white/25 dark:hover:bg-white/[0.04]"
               }`}
             >
               {/* Selection indicator dot */}
@@ -54,7 +54,7 @@ export function VisorFulfillmentPicker({ value, onChange }: Props) {
                 className={`absolute right-3 top-3 flex h-4 w-4 items-center justify-center rounded-full border transition-all duration-200 ${
                   active
                     ? "border-accent bg-accent shadow-[0_0_8px_rgba(224,30,30,0.4)]"
-                    : "border-black/20 bg-transparent group-hover:border-black/35"
+                    : "border-black/20 bg-transparent group-hover:border-black/35 dark:border-white/20 dark:group-hover:border-white/35"
                 }`}
               >
                 {active ? (
@@ -65,7 +65,7 @@ export function VisorFulfillmentPicker({ value, onChange }: Props) {
               <span
                 className={`inline-flex rounded-full border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider ${
                   badge
-                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700"
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
                     : "invisible border-transparent"
                 }`}
               >
@@ -87,7 +87,7 @@ export function VisorFulfillmentPicker({ value, onChange }: Props) {
         })}
       </div>
       {value === "dropoff_visor" ? (
-        <p className="mt-4 rounded-xl border border-black/10 bg-black/[0.015] px-4 py-3 text-xs leading-relaxed text-muted">
+        <p className="mt-4 rounded-xl border border-black/10 bg-black/[0.015] px-4 py-3 text-xs leading-relaxed text-muted dark:border-white/10 dark:bg-white/[0.02]">
           {t("fulfillmentDropoffNote")}
         </p>
       ) : null}

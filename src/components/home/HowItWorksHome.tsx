@@ -46,7 +46,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
   ];
 
   return (
-    <section className={isPage ? "pt-4 pb-12" : "bg-black/[0.02] py-24"}>
+    <section className={isPage ? "pt-4 pb-12" : "bg-black/[0.02] py-24 dark:bg-white/[0.02]"}>
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <TitleTag className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
           {t("homeTitle")}
@@ -56,13 +56,13 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
         {/* Numbered process: order, ship, engrave */}
         <div className="relative mt-14">
           <div
-            className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-accent/30 via-black/10 to-accent/30 md:block"
+            className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-accent/30 via-black/10 to-accent/30 dark:via-white/10 md:block"
             aria-hidden
           />
           <ol className="grid gap-10 md:grid-cols-3 md:gap-8">
             {steps.map((s, i) => (
               <li key={s.key} className="relative flex flex-col">
-                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-background font-mono text-sm font-semibold text-accent shadow-[0_0_0_6px_rgba(250,250,250,1)]">
+                <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-background font-mono text-sm font-semibold text-accent shadow-[0_0_0_6px_rgba(250,250,250,1)] dark:shadow-[0_0_0_6px_rgba(0,0,0,1)]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p className="mt-5 text-xs font-semibold uppercase leading-snug tracking-[0.14em] text-foreground sm:text-[13px]">
@@ -79,7 +79,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
         {isPage ? (
           <div
             id="delivery-options"
-            className="mt-16 scroll-mt-28 border-t border-black/[0.08] pt-14 md:mt-20 md:pt-16"
+            className="mt-16 scroll-mt-28 border-t border-black/[0.08] dark:border-white/[0.08] pt-14 md:mt-20 md:pt-16"
           >
             <h3 className="text-xl font-semibold tracking-tight text-foreground md:text-2xl">
               {t("deliveryTitle")}
@@ -89,7 +89,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
               {deliveryOptions.map((option) => (
                 <article
                   key={option.title}
-                  className="flex flex-col rounded-2xl border border-black/[0.08] bg-background p-6 shadow-sm md:p-8"
+                  className="flex flex-col rounded-2xl border border-black/[0.08] dark:border-white/[0.08] bg-background p-6 shadow-sm md:p-8"
                 >
                   <div>
                     <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-foreground">
@@ -99,7 +99,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
                       &ldquo;{option.body}&rdquo;
                     </p>
                   </div>
-                  <ul className="mt-6 space-y-2.5 border-t border-black/10 pt-6">
+                  <ul className="mt-6 space-y-2.5 border-t border-black/10 pt-6 dark:border-white/10">
                     {option.highlights.map((item) => (
                       <li key={item} className="flex gap-2.5 text-sm leading-snug text-muted">
                         <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent/90" aria-hidden />
@@ -121,7 +121,7 @@ export async function HowItWorksHome({ variant = "home" }: Props) {
             </p>
           </div>
         ) : (
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-black/[0.08] pt-8">
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-black/[0.08] dark:border-white/[0.08] pt-8">
             <p className="text-sm text-muted">
               <span className="mr-2 text-accent">✓</span>
               {t("reviewNote")}

@@ -17,7 +17,9 @@
     "closeMenu": "Menu sluiten",
     "search": "Zoeken",
     "cart": "Winkelmand",
-    "close": "Sluiten"
+    "close": "Sluiten",
+    "switchToDark": "Schakel naar donker thema",
+    "switchToLight": "Schakel naar licht thema"
   },
   "LocaleSwitcher": {
     "label": "Taal",

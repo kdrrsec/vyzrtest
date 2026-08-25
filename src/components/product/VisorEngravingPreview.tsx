@@ -41,8 +41,8 @@ export function VisorEngravingPreview({
   }, [configMode, standardTextureUrl, composedPreviewUrl]);
 
   const shellClass = embedded
-    ? "relative isolate h-full min-h-[420px] w-full overflow-hidden bg-white bg-gradient-to-b from-black/[0.03] to-transparent"
-    : "relative isolate h-[420px] w-full scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white bg-gradient-to-b from-black/[0.03] to-transparent shadow-sm";
+    ? "relative isolate h-full min-h-[420px] w-full overflow-hidden bg-white bg-gradient-to-b from-black/[0.03] to-transparent dark:bg-black dark:from-white/[0.03]"
+    : "relative isolate h-[420px] w-full scroll-mt-28 overflow-hidden rounded-2xl border border-black/10 bg-white bg-gradient-to-b from-black/[0.03] to-transparent shadow-sm dark:border-white/10 dark:bg-black dark:from-white/[0.03]";
 
   return (
     <div
