@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t("metaTitle") };
 }
 
-const FAQ_IDS = [1, 2, 3, 4, 5, 6] as const;
+const FAQ_IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 
 export default async function FaqPage({ params }: Props) {
   const { locale } = await params;
