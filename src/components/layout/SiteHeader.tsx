@@ -88,7 +88,7 @@ export function SiteHeader() {
       </div>
 
       <header className="sticky top-0 z-50 overflow-visible border-b border-black/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90">
-        <div className="mx-auto flex h-[50px] max-h-[50px] min-h-[50px] max-w-7xl items-center justify-between gap-3 overflow-visible px-4 md:px-6">
+        <div className="relative mx-auto flex h-[50px] max-h-[50px] min-h-[50px] max-w-7xl items-center justify-between gap-3 overflow-visible px-4 md:px-6">
           <div className="flex min-w-0 items-center gap-3 lg:gap-8">
             <button
               type="button"
@@ -101,9 +101,12 @@ export function SiteHeader() {
               {mobileOpen ? <CloseMenuIcon /> : <MenuIcon />}
             </button>
 
+            {/* Centered on mobile via absolute positioning (independent of the unequal-width
+                hamburger/icon groups either side); back in normal flow at lg with the existing
+                translate-x trick that centers it against the max-w-7xl container. */}
             <Link
               href={PATHS.home}
-              className="relative z-10 flex h-[50px] shrink-0 translate-y-1 items-center overflow-visible lg:-translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)]"
+              className="absolute left-1/2 top-1/2 z-10 flex h-[50px] shrink-0 -translate-x-1/2 -translate-y-1/2 items-center overflow-visible lg:static lg:left-auto lg:top-auto lg:translate-y-1 lg:-translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)]"
               aria-label={tNav("home")}
             >
               <HeaderLogo src={LOGO_SRC} />
@@ -216,7 +219,7 @@ function HeaderLogo({ src }: { src: string }) {
     <img
       src={src}
       alt="VYZR"
-      className="h-[128px] w-auto max-w-[min(100vw-5rem,720px)] shrink-0 object-contain object-left brightness-0 dark:brightness-100 md:h-[140px]"
+      className="h-9 w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:h-[140px] lg:max-w-[min(100vw-5rem,720px)]"
       onError={() => setBroken(true)}
     />
   );
