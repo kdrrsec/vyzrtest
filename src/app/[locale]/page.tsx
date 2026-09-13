@@ -3,7 +3,6 @@ import { FeaturedDesigns } from "@/components/home/FeaturedDesigns";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Hero } from "@/components/home/Hero";
 import { HowItWorksHome } from "@/components/home/HowItWorksHome";
-import { TrustBlocks } from "@/components/home/TrustBlocks";
 import { filterCatalogForShop } from "@/lib/catalogSplit";
 import { getShopifyConfig } from "@/lib/shopify/config";
 import { getFeaturedProducts } from "@/lib/shopify/storefront";
@@ -39,7 +38,6 @@ export default async function HomePage({ params }: Props) {
       <Hero />
       <FeaturedDesigns products={featured} />
       <HowItWorksHome />
-      <TrustBlocks />
       <FinalCta />
     </>
   );

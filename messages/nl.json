@@ -146,16 +146,6 @@
     "reviewNote": "Elk ontwerp wordt gecontroleerd vóór gravering.",
     "startOrder": "Start je bestelling"
   },
-  "Trust": {
-    "title": "Gemaakt voor echte rijders",
-    "link": "Personaliseer je vizor →",
-    "b1Title": "Veilige checkout",
-    "b1Body": "Betaal veilig via onze Shopify-checkout met vertrouwde betaalmethodes.\n\nJe order wordt direct bevestigd met duidelijke volgende stappen om je vizor naar ons op te sturen.",
-    "b2Title": "Jouw vizor, jouw ontwerp",
-    "b2Body": "We graveren de vizor die je opstuurt, geen vervanger.\n\nElk ontwerp wordt vóór gravering gecontroleerd op nette plaatsing, zichtbaarheid en precisie.",
-    "b3Title": "Zorgvuldig behandeld",
-    "b3Body": "Elke motorvizor wordt gegraveerd, kwaliteitsgecontroleerd en met traceerbare verzending teruggestuurd.\n\nGemaakt voor strakke resultaten en blijvende duurzaamheid."
-  },
   "BeforeAfter": {
     "title": "Jouw vizor vóór en ná onze gravering",
     "link": "Bestel gravering →",
@@ -174,15 +164,7 @@
   },
   "FinalCta": {
     "title": "Custom vizor gravering",
-    "body": "VYZR is gespecialiseerd in custom gravering op motorvizieren.\n\nJe stuurt je eigen vizor op, wij zetten je ontwerp erop en sturen hem rijklaar terug.",
-    "h3_1": "Hoe vizor gravering werkt",
-    "h3_1Body": "Bestel online, stuur je vizor op en wij sturen hem gegraveerd terug.",
-    "h3_2": "Upload je eigen vizor design",
-    "h3_2Body": "Upload een logo, tekst of custom artwork voor review vóór gravering.",
-    "h3_3": "Veilige gravering op motorvizieren",
-    "h3_3Body": "Designs worden buiten je directe zichtlijn geplaatst.",
-    "linkCustomize": "Customize your visor →",
-    "linkHow": "How it works →",
+    "linkHow": "Hoe het werkt →",
     "linkFaq": "FAQ →",
     "cta": "Start met personaliseren →"
   },

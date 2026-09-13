@@ -146,16 +146,6 @@
     "reviewNote": "Every design is reviewed before engraving.",
     "startOrder": "Start your order"
   },
-  "Trust": {
-    "title": "Built for real riders",
-    "link": "Customize your visor →",
-    "b1Title": "Secure checkout",
-    "b1Body": "Pay securely through our Shopify checkout with trusted payment methods.\n\nYour order is confirmed instantly with clear next steps for sending in your visor.",
-    "b2Title": "Your visor, your design",
-    "b2Body": "We engrave the visor you send in, not a replacement.\n\nEvery design is checked for clean placement, visibility and precision before engraving.",
-    "b3Title": "Handled with care",
-    "b3Body": "Every motorcycle visor is engraved, quality checked and returned with tracked shipping.\n\nBuilt for clean results and long-lasting durability."
-  },
   "BeforeAfter": {
     "title": "Your visor before and after our engraving",
     "link": "Order engraving →",
@@ -174,14 +164,6 @@
   },
   "FinalCta": {
     "title": "Custom visor engraving",
-    "body": "VYZR specializes in custom engraving on motorcycle visors.\n\nYou send in your own visor, we apply your design, and return it ready to ride.",
-    "h3_1": "How visor engraving works",
-    "h3_1Body": "Order online, send in your visor, and we return it engraved.",
-    "h3_2": "Upload your own visor design",
-    "h3_2Body": "Upload a logo, text or custom artwork for review before engraving.",
-    "h3_3": "Safe engraving on motorcycle visors",
-    "h3_3Body": "Designs are placed away from your direct line of sight.",
-    "linkCustomize": "Customize your visor →",
     "linkHow": "How it works →",
     "linkFaq": "FAQ →",
     "cta": "Start customizing →"

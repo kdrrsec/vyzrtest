@@ -8,15 +8,11 @@ export async function FinalCta() {
   return (
     <section className="bg-black/[0.02] py-16 dark:bg-white/[0.02]">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
-        {/* Short brand hook, kept brief so the section reads as a lead-in to the CTA, not a content page */}
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">VYZR</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
             {t("title")}
           </h2>
-          <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-muted">
-            {t("body")}
-          </p>
         </div>
 
         {/* CTA banner: the page's closing conversion moment */}
