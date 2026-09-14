@@ -219,7 +219,7 @@ function HeaderLogo({ src }: { src: string }) {
     <img
       src={src}
       alt="VYZR"
-      className="h-9 w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:h-[140px] lg:max-w-[min(100vw-5rem,720px)]"
+      className="h-12 w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:h-[140px] lg:max-w-[min(100vw-5rem,720px)]"
       onError={() => setBroken(true)}
     />
   );
