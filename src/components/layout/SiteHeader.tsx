@@ -101,12 +101,12 @@ export function SiteHeader() {
               {mobileOpen ? <CloseMenuIcon /> : <MenuIcon />}
             </button>
 
-            {/* Centered on mobile via absolute positioning (independent of the unequal-width
-                hamburger/icon groups either side); back in normal flow at lg with the existing
-                translate-x trick that centers it against the max-w-7xl container. */}
+            {/* Desktop/tablet only: normal-flow logo with the translate-x trick that bleeds it
+                against the max-w-7xl container. Mobile has its own centered instance below,
+                since the two headers need different positioning strategies (see there). */}
             <Link
               href={PATHS.home}
-              className="absolute left-1/2 top-1/2 z-10 flex h-[50px] shrink-0 -translate-x-1/2 -translate-y-1/2 items-center overflow-visible lg:static lg:left-auto lg:top-auto lg:translate-y-1 lg:-translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)]"
+              className="hidden h-[50px] shrink-0 items-center overflow-visible lg:flex lg:translate-y-1 lg:-translate-x-[calc((100vw-min(100vw,80rem))/2+0.25rem-6.875rem+0.5rem)]"
               aria-label={tNav("home")}
             >
               <HeaderLogo src={LOGO_SRC} />
@@ -126,6 +126,19 @@ export function SiteHeader() {
               ))}
             </nav>
           </div>
+
+          {/* Mobile/tablet only: centered in the actual gap between the hamburger (left,
+              fixed 56px) and the search/cart icons (right, fixed ~110px), not against the
+              full viewport width — that would only leave ~13px of slack next to the search
+              button before the two collide (verified via elementFromPoint) and cap the logo
+              at a tiny size. Centering against the real gap instead gives it ~4x the room. */}
+          <Link
+            href={PATHS.home}
+            className="absolute inset-y-0 left-14 right-[111px] z-10 flex items-center justify-center overflow-visible lg:hidden"
+            aria-label={tNav("home")}
+          >
+            <HeaderLogo src={LOGO_SRC} mobile />
+          </Link>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <span className="hidden px-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted lg:inline">
@@ -200,7 +213,7 @@ export function SiteHeader() {
   );
 }
 
-function HeaderLogo({ src }: { src: string }) {
+function HeaderLogo({ src, mobile }: { src: string; mobile?: boolean }) {
   const [broken, setBroken] = useState(false);
   if (broken) {
     return (
@@ -219,7 +232,11 @@ function HeaderLogo({ src }: { src: string }) {
     <img
       src={src}
       alt="VYZR"
-      className="h-12 w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:h-[140px] lg:max-w-[min(100vw-5rem,720px)]"
+      className={
+        mobile
+          ? "h-16 w-auto max-w-full shrink-0 object-contain brightness-0 dark:brightness-100"
+          : "h-[140px] w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:max-w-[min(100vw-5rem,720px)]"
+      }
       onError={() => setBroken(true)}
     />
   );
