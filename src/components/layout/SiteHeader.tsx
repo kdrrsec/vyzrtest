@@ -88,7 +88,7 @@ export function SiteHeader() {
       </div>
 
       <header className="sticky top-0 z-50 overflow-visible border-b border-black/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90">
-        <div className="relative mx-auto grid h-[50px] max-h-[50px] min-h-[50px] max-w-7xl grid-cols-[96px_1fr_96px] items-center overflow-visible px-4 md:px-6 lg:flex lg:justify-between lg:gap-3">
+        <div className="relative mx-auto flex h-[50px] max-h-[50px] min-h-[50px] max-w-7xl items-center justify-between gap-3 overflow-visible px-4 md:px-6">
           <div className="flex min-w-0 items-center gap-3 lg:gap-8">
             <button
               type="button"
@@ -127,23 +127,27 @@ export function SiteHeader() {
             </nav>
           </div>
 
-          {/* Mobile/tablet only: a true middle grid column, flanked by two fixed 96px side
-              columns (wide enough for the icons group, the wider of the two sides) so the
-              logo is centered against the real screen middle, not just the leftover gap
-              next to whichever side is narrower. That symmetry is what unlocks headroom:
-              centering against the full viewport directly left only ~13px of slack before
-              hitting the search button (verified via elementFromPoint), because the icons
-              side sits closer to center than the hamburger side. Reserving equal space on
-              both sides removes that asymmetry instead of just working around it. */}
+          {/* Mobile/tablet only: absolutely positioned with equal left/right insets (112px,
+              just past the ~110px-wide icons group - the wider of the two sides) so it's
+              centered against the real screen middle, not the leftover gap next to whichever
+              side is narrower (centering against that gap directly shifted it ~27px off
+              true-center, since the icons side sits closer to center than the hamburger side).
+              `inset-y-0` (not `self-stretch` in a height-capped flex/grid row) is what makes
+              vertical centering work when the logo is taller than the 50px header: it gives
+              the positioned box a definite 50px height that `items-center` can center an
+              oversized child within, overflowing symmetrically above and below. A grid/flex
+              item alignment property can't do that once the row itself is height-capped
+              below the item's own content size - it just gets pinned to the row's start
+              edge and overflows entirely downward instead. */}
           <Link
             href={PATHS.home}
-            className="z-10 flex items-center justify-center self-stretch overflow-visible lg:hidden"
+            className="absolute inset-y-0 left-[112px] right-[112px] z-10 flex items-center justify-center overflow-visible lg:hidden"
             aria-label={tNav("home")}
           >
             <HeaderLogo src={LOGO_SRC} mobile />
           </Link>
 
-          <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <span className="hidden px-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted lg:inline">
               {currencyLabel}
             </span>
@@ -237,7 +241,7 @@ function HeaderLogo({ src, mobile }: { src: string; mobile?: boolean }) {
       alt="VYZR"
       className={
         mobile
-          ? "h-16 w-auto max-w-full shrink-0 object-contain brightness-0 dark:brightness-100 min-[375px]:h-20"
+          ? "h-14 w-auto max-w-full shrink-0 object-contain brightness-0 dark:brightness-100 min-[375px]:h-20"
           : "h-[140px] w-auto shrink-0 object-contain object-left brightness-0 dark:brightness-100 lg:max-w-[min(100vw-5rem,720px)]"
       }
       onError={() => setBroken(true)}
