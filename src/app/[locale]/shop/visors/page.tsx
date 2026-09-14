@@ -47,9 +47,9 @@ export default async function ShopVisorsPage({ params }: Props) {
       ) : null}
 
       {!getShopifyConfig() ? (
-        <p className="mt-10 text-sm text-muted">{t("noShopify")}</p>
+        <p className="mt-10 max-w-2xl break-words text-sm text-muted">{t("noShopify")}</p>
       ) : products.length === 0 ? (
-        <p className="mt-10 text-sm text-muted">{t("noProducts")}</p>
+        <p className="mt-10 max-w-2xl break-words text-sm text-muted">{t("noProducts")}</p>
       ) : (
         <VisorShopShowcase products={products} locale={locale} />
       )}

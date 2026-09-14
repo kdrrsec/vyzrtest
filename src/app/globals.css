@@ -140,6 +140,17 @@ body {
   }
 }
 
+/* iOS Safari auto-zooms the page on focus for any field under 16px; the design's 14px
+   (text-sm) is otherwise fine, so only bump it back up on phone-width viewports.
+   !important is needed to outrank the text-sm utility class on these elements. */
+@media (max-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
 input:-webkit-autofill,
 textarea:-webkit-autofill {
   -webkit-text-fill-color: #0a0a0a;
