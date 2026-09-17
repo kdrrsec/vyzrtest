@@ -46,7 +46,7 @@ export function ContactForm() {
 
       <form action={formAction} className="mt-10 space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">
-          <FieldGroup htmlFor="name" label={t("name")}>
+          <FieldGroup htmlFor="name" label={t("name")} required>
             <input
               id="name"
               name="name"
@@ -56,7 +56,7 @@ export function ContactForm() {
               className="w-full border-0 bg-transparent py-1 text-sm text-foreground caret-foreground outline-none ring-0 placeholder:text-muted focus:ring-0"
             />
           </FieldGroup>
-          <FieldGroup htmlFor="email" label={t("email")}>
+          <FieldGroup htmlFor="email" label={t("email")} required>
             <input
               id="email"
               name="email"
@@ -93,6 +93,8 @@ export function ContactForm() {
           </p>
         ) : null}
 
+        <p className="text-xs text-muted">{t("requiredNote")}</p>
+
         <div className="flex justify-start pt-2">
           <SubmitButton label={t("submit")} pendingLabel={t("sending")} />
         </div>
@@ -104,10 +106,12 @@ export function ContactForm() {
 function FieldGroup({
   label,
   htmlFor,
+  required,
   children,
 }: {
   label: string;
   htmlFor: string;
+  required?: boolean;
   children: ReactNode;
 }) {
   return (
@@ -117,6 +121,12 @@ function FieldGroup({
         className="absolute left-3 top-2 cursor-text font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground"
       >
         {label}
+        {required ? (
+          <span className="text-accent" aria-hidden>
+            {" "}
+            *
+          </span>
+        ) : null}
       </label>
       {children}
     </div>

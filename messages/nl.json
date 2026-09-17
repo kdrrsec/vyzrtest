@@ -208,6 +208,7 @@
     "email": "E-mail",
     "phone": "Telefoon",
     "comment": "Bericht",
+    "requiredNote": "* Verplichte velden",
     "submit": "Versturen",
     "sending": "Verzenden…",
     "thanksTitle": "Bedankt",

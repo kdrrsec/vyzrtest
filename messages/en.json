@@ -208,6 +208,7 @@
     "email": "Email",
     "phone": "Phone",
     "comment": "Comment",
+    "requiredNote": "* Required fields",
     "submit": "Submit",
     "sending": "Sending…",
     "thanksTitle": "Thank you",
