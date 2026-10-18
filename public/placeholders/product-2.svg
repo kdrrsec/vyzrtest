@@ -11,7 +11,7 @@
     </radialGradient>
   </defs>
   <rect width="800" height="600" fill="url(#bg2)"/>
-  <ellipse cx="380" cy="290" rx="240" ry="190" fill="url(#glow)"/>
-  <path d="M250 340 L400 210 L550 340" fill="none" stroke="#e53935" stroke-width="1.5" stroke-opacity="0.4"/>
-  <circle cx="400" cy="300" r="8" fill="#e53935" fill-opacity="0.5"/>
+  <ellipse cx="390" cy="295" rx="360" ry="270" fill="url(#glow)"/>
+  <path d="M160 370 L400 170 L640 370" fill="none" stroke="#e53935" stroke-width="2" stroke-opacity="0.45"/>
+  <circle cx="400" cy="300" r="10" fill="#e53935" fill-opacity="0.5"/>
 </svg>

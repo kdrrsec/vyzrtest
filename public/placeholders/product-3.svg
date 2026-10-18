@@ -11,7 +11,7 @@
     </linearGradient>
   </defs>
   <rect width="800" height="600" fill="url(#bg3)"/>
-  <rect x="0" y="260" width="800" height="80" fill="url(#band)"/>
-  <ellipse cx="420" cy="300" rx="220" ry="175" fill="#1a1a1a" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
-  <ellipse cx="400" cy="295" rx="140" ry="95" fill="#222"/>
+  <rect x="0" y="255" width="800" height="90" fill="url(#band)"/>
+  <ellipse cx="400" cy="300" rx="370" ry="270" fill="#1a1a1a" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+  <ellipse cx="400" cy="295" rx="230" ry="155" fill="#222"/>
 </svg>

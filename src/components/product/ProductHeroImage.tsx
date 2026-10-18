@@ -26,7 +26,7 @@ export function ProductHeroImage({ product }: { product: ShopifyProduct }) {
               src={src || PLACEHOLDER.product1}
               alt={alt}
               fill
-              className="object-contain object-center p-4 md:p-6"
+              className="object-contain object-center p-1.5 md:p-2"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
