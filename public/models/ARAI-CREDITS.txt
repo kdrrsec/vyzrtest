@@ -1,0 +1,5 @@
+Arai RX7 GP helmet model by ozygozy.
+Source: https://blendswap.com/blend/13612
+License: CC0, as listed by the source.
+User-supplied arai_rx7gp.blend.
+Adaptations: evaluated original modifiers, matte black materials, web export, separate non-overlapping visor design UVs.

@@ -1,5 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
+const HelmetEditor = dynamic(() => import("@/components/viewer/HelmetEditor"), { ssr: false });
+
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
@@ -7,14 +10,13 @@ import { OrderPriceBreakdown } from "@/components/product/OrderPriceBreakdown";
 import { VisorFulfillmentPicker } from "@/components/product/VisorFulfillmentPicker";
 import { VisorSelectField } from "@/components/product/VisorSelectField";
 import { getVisorById } from "@/lib/visorCatalog";
-import type { CustomizerSetupId, SingleSide, VisorSlotId } from "@/lib/customizerSetup";
-import { SETUP_PRICES_EUR, slotsForSetup } from "@/lib/customizerSetup";
+import type { CustomizerSetupId, SingleSide } from "@/lib/customizerSetup";
+import { SETUP_PRICES_EUR } from "@/lib/customizerSetup";
 import type { VisorFulfillmentId } from "@/lib/visorFulfillment";
 import { useCustomizerStore } from "@/store/useCustomizerStore";
 
 const SETUPS: CustomizerSetupId[] = ["single", "double", "full"];
 
-const ACCEPT_IMAGES = "image/png,image/jpeg,image/jpg,image/svg+xml";
 
 type EngravingPrice = {
   base: string;
@@ -34,81 +36,6 @@ type DesignPickerProps = {
   checkoutSlot?: ReactNode;
 };
 
-function SlotSection({
-  slot,
-  title,
-  hint,
-  value,
-  onFile,
-  disabled,
-}: {
-  slot: VisorSlotId;
-  title: string;
-  hint: string;
-  value: string | null;
-  onFile: (slot: VisorSlotId, file: File | null) => void;
-  disabled?: boolean;
-}) {
-  const t = useTranslations("Customizer");
-  const inputId = `visor-upload-${slot}`;
-  return (
-    <section className="rounded-2xl border border-black/10 bg-black/[0.015] p-6 dark:border-white/10 dark:bg-white/[0.02] md:p-8">
-      <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-foreground">
-        {title}
-      </h3>
-      <p className="mt-2 text-xs text-muted">{hint}</p>
-      <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-start">
-        <label htmlFor={inputId} className="block shrink-0">
-          <span className="sr-only">{title}</span>
-          <input
-            id={inputId}
-            type="file"
-            accept={ACCEPT_IMAGES}
-            disabled={disabled}
-            className="block w-full max-w-xs cursor-pointer text-xs text-muted file:mr-3 file:cursor-pointer file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2.5 file:text-[11px] file:font-semibold file:uppercase file:tracking-wider file:text-background hover:file:bg-accent hover:file:text-white disabled:cursor-not-allowed disabled:opacity-50"
-            onChange={(e) => {
-              const f = e.target.files?.[0] ?? null;
-              onFile(slot, f);
-              e.target.value = "";
-            }}
-          />
-        </label>
-        {value ? (
-          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-black/10 bg-black/5 dark:border-white/10 dark:bg-white/5">
-            {/* eslint-disable-next-line @next/next/no-img-element -- data URL from customer */}
-            <img src={value} alt="" className="h-full w-full object-contain" />
-          </div>
-        ) : null}
-      </div>
-      {value ? (
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <p
-            className="flex items-center gap-2 text-sm font-medium text-emerald-700 dark:text-emerald-400"
-            role="status"
-            aria-live="polite"
-          >
-            <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-emerald-600/40 bg-emerald-500/10 text-xs leading-none text-emerald-700 dark:text-emerald-400"
-              aria-hidden
-            >
-              ✓
-            </span>
-            <span>{t("slotDesignAdded")}</span>
-          </p>
-          <button
-            type="button"
-            disabled={disabled}
-            onClick={() => onFile(slot, null)}
-            className="text-xs font-medium text-muted underline-offset-4 transition hover:text-foreground hover:underline disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {t("slotDesignRemove")}
-          </button>
-        </div>
-      ) : null}
-    </section>
-  );
-}
-
 /** Position-based customizer (custom_upload products). */
 export function DesignPicker({
   fulfillment,
@@ -125,32 +52,11 @@ export function DesignPicker({
 
   const setup = useCustomizerStore((s) => s.setup);
   const singleSide = useCustomizerStore((s) => s.singleSide);
-  const uploads = useCustomizerStore((s) => s.uploads);
   const setSetup = useCustomizerStore((s) => s.setSetup);
   const setSingleSide = useCustomizerStore((s) => s.setSingleSide);
-  const setSlotUpload = useCustomizerStore((s) => s.setSlotUpload);
 
   const selectedVisor = useMemo(() => getVisorById(selectedVisorId), [selectedVisorId]);
   const visorSelectMode = fulfillment === "vyzr_supplies_visor" ? "supply" : "own";
-
-  const onSlotFile = (slot: VisorSlotId, file: File | null) => {
-    if (!designUploadConfigured) return;
-    if (!file) {
-      setSlotUpload(slot, null);
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      const r = reader.result;
-      if (typeof r === "string") setSlotUpload(slot, r);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const slotTitle = (id: VisorSlotId) =>
-    id === "left" ? t("slotLeftTitle") : id === "right" ? t("slotRightTitle") : t("slotTopTitle");
-  const slotHint = (id: VisorSlotId) =>
-    id === "left" ? t("slotLeftHint") : id === "right" ? t("slotRightHint") : t("slotTopHint");
 
   return (
     <div className="space-y-14 border-t border-black/10 pt-14 dark:border-white/10">
@@ -263,19 +169,7 @@ export function DesignPicker({
                 {tp("uploadNotConfigured")}
               </p>
             ) : null}
-            <div className="space-y-10">
-              {slotsForSetup(setup, singleSide).map((slot) => (
-                <SlotSection
-                  key={slot}
-                  slot={slot}
-                  title={slotTitle(slot)}
-                  hint={slotHint(slot)}
-                  value={uploads[slot]}
-                  onFile={onSlotFile}
-                  disabled={!designUploadConfigured}
-                />
-              ))}
-            </div>
+            <HelmetEditor disabled={!designUploadConfigured} />
           </>
         ) : (
           <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.015] px-6 py-8 text-sm text-muted dark:border-white/15 dark:bg-white/[0.02]">

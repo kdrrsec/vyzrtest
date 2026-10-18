@@ -44,6 +44,7 @@ export function ProductConfigurator({
   const setup = useCustomizerStore((s) => s.setup);
   const singleSide = useCustomizerStore((s) => s.singleSide);
   const uploads = useCustomizerStore((s) => s.uploads);
+  const transforms = useCustomizerStore((s) => s.transforms);
 
   const isStandard = product.visor.mode === "standard";
   const isCustomUpload = product.visor.mode === "custom_upload";
@@ -147,12 +148,13 @@ export function ProductConfigurator({
       selectedVisor,
       labels: fulfillmentLabels,
     });
-    return [...fulfillmentAttrs, ...uploadAttrs];
+    return [...fulfillmentAttrs, ...uploadAttrs, { key: "_vyzr_layout", value: JSON.stringify({ version: 1, model: "arai-rx7gp", zones: Object.fromEntries(slotsForSetup(setup, singleSide).map(slot => [slot, transforms[slot]])) }) }];
   }, [
     isCustomUpload,
     setup,
     singleSide,
     uploads,
+    transforms,
     fulfillment,
     selectedVisor,
     fulfillmentLabels,
