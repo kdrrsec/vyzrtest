@@ -25,7 +25,7 @@ function useGtmPageViews() {
 function useGtmInactivity() {
   const pathname = usePathname();
   const firedRef = useRef(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     if (!GTM_ID) return;

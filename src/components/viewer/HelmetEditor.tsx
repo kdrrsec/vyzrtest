@@ -12,6 +12,34 @@ import { WebGLGate } from "./WebGLGate";
 
 // UV coordinates belong to the authored visor surface, not the helmet shell.
 const zones = { left: [270,170,300,300], top: [760,24,528,130], right: [1478,170,300,300] };
+
+/**
+ * Engraving preview color, alpha-aware: an upload with its own transparency (a PNG/SVG
+ * cutout) keeps that alpha as-is, so white ink on a transparent background stays visible.
+ * An upload with no transparency at all (a flat JPG or a flattened PNG, e.g. a black
+ * drawing on white paper) falls back to treating light pixels as background to remove,
+ * since there's no alpha channel to tell ink from background otherwise.
+ */
+function toWhiteEngraving(img: HTMLImageElement): HTMLCanvasElement {
+  const out = document.createElement("canvas");
+  out.width = img.width; out.height = img.height;
+  const ctx = out.getContext("2d")!;
+  ctx.drawImage(img, 0, 0);
+  const data = ctx.getImageData(0, 0, out.width, out.height);
+  const p = data.data;
+  let hasTransparency = false;
+  for (let i = 3; i < p.length; i += 4) { if (p[i] < 250) { hasTransparency = true; break; } }
+  for (let i = 0; i < p.length; i += 4) {
+    if (!hasTransparency) {
+      const l = (p[i] + p[i + 1] + p[i + 2]) / 3;
+      p[i + 3] = Math.round(p[i + 3] * (1 - l / 255));
+    }
+    p[i] = p[i + 1] = p[i + 2] = 240;
+  }
+  ctx.putImageData(data, 0, 0);
+  return out;
+}
+
 function Helmet({ texture }: { texture: THREE.CanvasTexture }) {
   const { scene } = useGLTF("/models/arai-rx7gp.glb");
   const model = useMemo(() => {
@@ -57,7 +85,7 @@ export default function HelmetEditor({ disabled = false }: { disabled?: boolean 
       const images = await Promise.all(slots.map(async id => {
         if (!uploads[id]) return null;
         const img = new Image(); img.src = uploads[id]!;
-        try { await img.decode(); return { id, img }; } catch { return null; }
+        try { await img.decode(); return { id, img: toWhiteEngraving(img) }; } catch { return null; }
       }));
       if (cancelled) return;
       const ctx = canvas.getContext("2d")!; ctx.clearRect(0,0,2048,640);
@@ -71,10 +99,6 @@ export default function HelmetEditor({ disabled = false }: { disabled?: boolean 
         ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
         ctx.translate(x+w/2+v.x/100*(w-bw)/2,y+h/2+v.y/100*(h-bh)/2); ctx.rotate(angle); ctx.drawImage(img,-iw/2,-ih/2,iw,ih); ctx.restore();
       }
-      // White engraving preview; preserve alpha and remove white backgrounds.
-      const data=ctx.getImageData(0,0,2048,640); const p=data.data;
-      for(let i=0;i<p.length;i+=4) { const l=(p[i]+p[i+1]+p[i+2])/3; p[i+3]=Math.round(p[i+3]*(1-l/255)); p[i]=p[i+1]=p[i+2]=240; }
-      ctx.putImageData(data,0,0);
       if(guides) for(const id of slots) { const [x,y,w,h]=zones[id]; ctx.strokeStyle=id===slot ? "#e01e1e" : "#ffffff80"; ctx.lineWidth=3; ctx.setLineDash([12,9]); ctx.strokeRect(x,y,w,h); }
       texture.needsUpdate=true;
     }
