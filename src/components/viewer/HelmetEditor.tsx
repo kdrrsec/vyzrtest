@@ -61,10 +61,11 @@ function Helmet({ texture }: { texture: THREE.CanvasTexture }) {
   useEffect(() => () => model.traverse(o => { if (o instanceof THREE.Mesh) (Array.isArray(o.material) ? o.material : [o.material]).forEach(m => m.dispose()); }), [model]);
   return <primitive object={model} dispose={null} />;
 }
+const CAMERA_TARGET_Y = -0.35;
 function Camera({ slot }: { slot: VisorSlotId }) {
   const { camera } = useThree();
-  useEffect(() => { camera.position.set(slot === "left" ? -5 : slot === "right" ? 5 : 0, .8, slot === "top" ? 6.2 : 2.7); camera.lookAt(0,0,0); }, [slot, camera]);
-  return <OrbitControls key={slot} makeDefault enablePan={false} minDistance={3.5} maxDistance={8} />;
+  useEffect(() => { camera.position.set(slot === "left" ? -5 : slot === "right" ? 5 : 0, .8, slot === "top" ? 6.2 : 2.7); camera.lookAt(0,CAMERA_TARGET_Y,0); }, [slot, camera]);
+  return <OrbitControls key={slot} makeDefault enablePan={false} minDistance={3.5} maxDistance={8} target={[0,CAMERA_TARGET_Y,0]} />;
 }
 export default function HelmetEditor({ disabled = false }: { disabled?: boolean }) {
   const nl = useLocale() === "nl";
