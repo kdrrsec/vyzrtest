@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { CalendlyInlineWidget } from "@/components/product/CalendlyInlineWidget";
@@ -29,8 +28,6 @@ import { useCustomizerStore } from "@/store/useCustomizerStore";
 function firstAvailableVariant(product: ShopifyProduct) {
   return product.variants.find((v) => v.availableForSale) ?? product.variants[0] ?? null;
 }
-
-const HelmetEditor = dynamic(() => import("@/components/viewer/HelmetEditor"), { ssr: false });
 
 type Props = {
   product: ShopifyProduct;
@@ -257,112 +254,6 @@ export function ProductConfigurator({
 
   const checkoutDisabledForCalendly = isDropoff && !!calendlyUrl && !calendlyBooked;
 
-  if (isCustomUpload) {
-    return (
-      <div>
-        <section className="bg-background py-14">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <div className="max-w-2xl">
-              <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{tc("kicker")}</p>
-              <h1 className="mt-2 text-4xl font-semibold tracking-tightest text-foreground md:text-5xl">
-                {product.title}
-              </h1>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{tc("lead")}</p>
-
-              <div className="mt-6">
-                {engravingPrice &&
-                (fulfillment === "vyzr_supplies_visor" || engravingPrice.showDiscount) ? (
-                  <OrderPriceBreakdown
-                    engravingBase={engravingPrice.base}
-                    engravingDiscounted={engravingPrice.discounted}
-                    currency={engravingPrice.currency}
-                    showEngravingDiscount={engravingPrice.showDiscount}
-                    visor={fulfillment === "vyzr_supplies_visor" ? selectedVisor : null}
-                  />
-                ) : (
-                  <p className="text-2xl font-light text-foreground">{price}</p>
-                )}
-                {!setup ? (
-                  <p className="mt-2 max-w-md text-xs leading-relaxed text-muted">
-                    {t("pricePickSetup")}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="mt-10">
-              {!designUploadConfigured ? (
-                <p
-                  className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
-                  role="note"
-                >
-                  {t("uploadNotConfigured")}
-                </p>
-              ) : null}
-              <HelmetEditor disabled={!designUploadConfigured} />
-            </div>
-
-            <ul className="mt-8 max-w-2xl space-y-3 text-sm text-muted">
-              <li className="flex gap-3">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {t("bullet1")}
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {t("bullet2")}
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {t("bullet3")}
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                {t("bullet4")}
-              </li>
-            </ul>
-
-            <p className="mt-4 max-w-2xl text-xs text-muted">{t("bagHint")}</p>
-          </div>
-        </section>
-
-        <section id="customizer-section" className="scroll-mt-28 bg-black/[0.02] dark:bg-white/[0.02] py-16 md:py-20">
-          <div className="mx-auto max-w-6xl px-4 md:px-6">
-            <DesignPicker
-              fulfillment={fulfillment}
-              onFulfillmentChange={onFulfillmentChange}
-              selectedVisorId={selectedVisorId}
-              onSelectedVisorIdChange={setSelectedVisorId}
-              engravingPrice={engravingPrice}
-              calendlySlot={calendlySlot}
-              checkoutSlot={
-                variant ? (
-                  <CheckoutButton
-                    variantId={variant.id}
-                    resolveLineAttributes={resolveCustomLineAttributes}
-                    extraCartLines={extraCartLines}
-                    applyVyzrSuppliesDiscount={applyVyzrSuppliesDiscount}
-                    isDropoff={isDropoff}
-                    disabled={
-                      !customUploadReady ||
-                      !fulfillmentReady ||
-                      !designUploadConfigured ||
-                      checkoutDisabledForCalendly
-                    }
-                    sentenceCase
-                  >
-                    {tc("addToCartLong")}
-                  </CheckoutButton>
-                ) : null
-              }
-            />
-          </div>
-        </section>
-
-        <ProductPageTrust tinted={false} />
-      </div>
-    );
-  }
-
   return (
     <div>
     <section className="bg-background py-14">
@@ -387,28 +278,67 @@ export function ProductConfigurator({
             ) : (
               <p className="text-2xl font-light text-foreground">{price}</p>
             )}
-          </div>
-
-          <div className="mt-8 space-y-0">
-            <VisorFulfillmentPicker value={fulfillment} onChange={onFulfillmentChange} />
-            <VisorSelectField
-              value={selectedVisorId}
-              onChange={setSelectedVisorId}
-              mode={fulfillment === "vyzr_supplies_visor" ? "supply" : "own"}
-              disclaimer={
-                fulfillment === "vyzr_supplies_visor" ? t("wrongVisorDisclaimer") : null
-              }
-            />
-            {calendlySlot}
-            {product.description?.trim() ? (
-              <div className="border-t border-black/10 dark:border-white/10 pt-8">
-                <ProductDescription html={product.description} />
-              </div>
+            {isCustomUpload && !setup ? (
+              <p className="mt-2 max-w-md text-xs leading-relaxed text-muted">
+                {t("pricePickSetup")}
+              </p>
             ) : null}
           </div>
 
+          {isStandard ? (
+            <div className="mt-8 space-y-0">
+              <VisorFulfillmentPicker value={fulfillment} onChange={onFulfillmentChange} />
+              <VisorSelectField
+                value={selectedVisorId}
+                onChange={setSelectedVisorId}
+                mode={fulfillment === "vyzr_supplies_visor" ? "supply" : "own"}
+                disclaimer={
+                  fulfillment === "vyzr_supplies_visor" ? t("wrongVisorDisclaimer") : null
+                }
+              />
+              {calendlySlot}
+              {product.description?.trim() ? (
+                <div className="border-t border-black/10 dark:border-white/10 pt-8">
+                  <ProductDescription html={product.description} />
+                </div>
+              ) : null}
+            </div>
+          ) : (
+            <ul className="mt-8 space-y-3 text-sm text-muted">
+              <li className="flex gap-3">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {t("bullet1")}
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {t("bullet2")}
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {t("bullet3")}
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {t("bullet4")}
+              </li>
+            </ul>
+          )}
+
           <div className="mt-10">
-            {variant ? (
+            {isCustomUpload ? (
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById("customizer-section")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="btn-accent w-full px-6 py-4 text-center text-sm font-semibold uppercase tracking-[0.16em]"
+              >
+                {t("goToCustomizer")}
+              </button>
+            ) : variant ? (
               <CheckoutButton
                 variantId={variant.id}
                 lineAttributes={lineAttributes}
@@ -422,10 +352,10 @@ export function ProductConfigurator({
             )}
           </div>
 
-          {!fulfillmentReady ? (
+          {isStandard && !fulfillmentReady ? (
             <p className="mt-3 text-xs text-muted">{t("visorSelectRequired")}</p>
           ) : null}
-          {fulfillmentReady && checkoutDisabledForCalendly ? (
+          {isStandard && fulfillmentReady && checkoutDisabledForCalendly ? (
             <p className="mt-3 text-xs text-muted">{t("calendlyRequired")}</p>
           ) : null}
 
@@ -435,7 +365,43 @@ export function ProductConfigurator({
       </div>
     </section>
 
-      <ProductPageTrust tinted={false} />
+      {isCustomUpload ? (
+        <section id="customizer-section" className="scroll-mt-28 bg-black/[0.02] dark:bg-white/[0.02] py-16 md:py-20">
+          <div className="mx-auto max-w-6xl px-4 md:px-6">
+            <DesignPicker
+              fulfillment={fulfillment}
+              onFulfillmentChange={onFulfillmentChange}
+              selectedVisorId={selectedVisorId}
+              onSelectedVisorIdChange={setSelectedVisorId}
+              engravingPrice={engravingPrice}
+              designUploadConfigured={designUploadConfigured}
+              calendlySlot={calendlySlot}
+              checkoutSlot={
+                variant ? (
+                  <CheckoutButton
+                    variantId={variant.id}
+                    resolveLineAttributes={resolveCustomLineAttributes}
+                    extraCartLines={extraCartLines}
+                    applyVyzrSuppliesDiscount={applyVyzrSuppliesDiscount}
+                    isDropoff={isDropoff}
+                    disabled={
+                      !customUploadReady ||
+                      !fulfillmentReady ||
+                      !designUploadConfigured ||
+                      checkoutDisabledForCalendly
+                    }
+                    sentenceCase
+                  >
+                    {tc("addToCartLong")}
+                  </CheckoutButton>
+                ) : null
+              }
+            />
+          </div>
+        </section>
+      ) : null}
+
+      <ProductPageTrust tinted={!isCustomUpload} />
     </div>
   );
 }

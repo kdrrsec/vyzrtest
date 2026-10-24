@@ -1,5 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
+const HelmetEditor = dynamic(() => import("@/components/viewer/HelmetEditor"), { ssr: false });
+
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
@@ -14,6 +17,7 @@ import { useCustomizerStore } from "@/store/useCustomizerStore";
 
 const SETUPS: CustomizerSetupId[] = ["single", "double", "full"];
 
+
 type EngravingPrice = {
   base: string;
   discounted: string;
@@ -27,18 +31,19 @@ type DesignPickerProps = {
   selectedVisorId: string | null;
   onSelectedVisorIdChange: (id: string | null) => void;
   engravingPrice: EngravingPrice | null;
+  designUploadConfigured?: boolean;
   calendlySlot?: ReactNode;
   checkoutSlot?: ReactNode;
 };
 
-/** Position-based customizer (custom_upload products). The 3D editor itself renders above
- * this, in the page hero; this covers fulfillment, setup, visor and checkout. */
+/** Position-based customizer (custom_upload products). */
 export function DesignPicker({
   fulfillment,
   onFulfillmentChange,
   selectedVisorId,
   onSelectedVisorIdChange,
   engravingPrice,
+  designUploadConfigured = true,
   calendlySlot,
   checkoutSlot,
 }: DesignPickerProps) {
@@ -55,6 +60,12 @@ export function DesignPicker({
 
   return (
     <div className="space-y-14 border-t border-black/10 pt-14 dark:border-white/10">
+      <header>
+        <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-accent">{t("kicker")}</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">{t("title")}</h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{t("lead")}</p>
+      </header>
+
       <VisorFulfillmentPicker value={fulfillment} onChange={onFulfillmentChange} />
 
       {/* Step 1 — setup */}
@@ -141,6 +152,32 @@ export function DesignPicker({
         </div>
       ) : null}
 
+      {/* Step 2 — upload designs (always visible so customers see this step exists; locked until a setup is picked) */}
+      <div className="space-y-8">
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-xs tabular-nums text-foreground/40">02</span>
+          <h3 className="text-sm font-medium uppercase tracking-[0.2em] text-foreground">{t("step2Title")}</h3>
+        </div>
+        {setup ? (
+          <>
+            <p className="max-w-2xl text-sm text-muted">{t("step2Lead")}</p>
+            {!designUploadConfigured ? (
+              <p
+                className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-xs leading-relaxed text-amber-800 dark:text-amber-300"
+                role="note"
+              >
+                {tp("uploadNotConfigured")}
+              </p>
+            ) : null}
+            <HelmetEditor disabled={!designUploadConfigured} />
+          </>
+        ) : (
+          <p className="rounded-2xl border border-dashed border-black/15 bg-black/[0.015] px-6 py-8 text-sm text-muted dark:border-white/15 dark:bg-white/[0.02]">
+            {t("lockedHint")}
+          </p>
+        )}
+      </div>
+
       <div className="space-y-0">
         <VisorSelectField
           value={selectedVisorId}
@@ -161,12 +198,12 @@ export function DesignPicker({
         />
       ) : null}
 
-      {/* Step 2 — checkout (always visible so customers see the destination; locked until a setup is picked) */}
+      {/* Step 3 — checkout (always visible so customers see the destination; locked until a setup is picked) */}
       <div className="rounded-2xl border border-black/10 bg-black/[0.03] px-5 py-6 dark:border-white/10 dark:bg-white/[0.03] md:px-8 md:py-7">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-10">
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="font-mono text-xs tabular-nums text-foreground/40">02</span>
+              <span className="font-mono text-xs tabular-nums text-foreground/40">03</span>
               <h3 className="text-sm font-medium normal-case tracking-[0.14em] text-foreground">
                 {t("step3Title")}
               </h3>
