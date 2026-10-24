@@ -10,10 +10,10 @@ export const DEMO_PRODUCT: ShopifyProduct = {
   description:
     "Send in your own visor; we laser-engrave your chosen design and return it. Configure here, then checkout on Shopify when connected.",
   featuredImage: {
-    url: PLACEHOLDER.product1,
-    altText: "Example visor product",
-    width: 800,
-    height: 600,
+    url: PLACEHOLDER.hero,
+    altText: "Rider wearing a visored motorcycle helmet",
+    width: 720,
+    height: 720,
   },
   spinFrames: getDemoSpinFrames(),
   priceRange: {
